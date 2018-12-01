@@ -10,7 +10,7 @@
 " be iMproved {{{
 " ============================================================================
 
-set nocompatible    " set Vim not to be compatible with Vi 
+set nocompatible    " set Vim not to be compatible with Vi
 let mapleader=","   " change the leader to be a comma vs slash
 filetype off
 
@@ -19,7 +19,7 @@ filetype off
 " VIM-PLUG BLOCK {{{
 " ============================================================================
 "
-" vim-plug is a very nice, minimalistic Vim plugin manager you can find at 
+" vim-plug is a very nice, minimalistic Vim plugin manager you can find at
 " https://github.com/junegunn/vim-plug
 
 call plug#begin('~/.vim/plugged')
@@ -49,7 +49,8 @@ call plug#end()
 let g:seoul256_background = 233
 
 if has('gui_running')
-  set guifont=Menlo:h14 columns=80 lines=40
+  set guifont=Fira\ Code:h14 columns=80 lines=40
+  set macligatures
   silent! colo seoul256
 else
   silent! colo seoul256
