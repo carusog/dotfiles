@@ -55,8 +55,9 @@ set background=dark
 " Material theme for airline
 let g:airline_theme='material'
 
+set guifont=Fira\ Code:h14
+
 if has('gui_running')
-  set guifont=Fira\ Code:h14
   set macligatures
   silent! colorscheme vim-material
 else
@@ -64,7 +65,9 @@ else
 endif
 
 set hlsearch
-
+set incsearch
+hi Search guibg=peru guifg=wheat
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 " }}}
 " ============================================================================
@@ -72,15 +75,16 @@ set hlsearch
 " ============================================================================
 
 noremap <space> za
-noremap <leader><space> :nohls<cr>
-" Press F4 to toggle highlighting on/off, and show current value.
-noremap <F4> :set hlsearch! hlsearch?<cr>
+" Press to toggle highlighting on/off, and show current value.
+noremap <leader><space> :set hlsearch! hlsearch?<cr>
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 imap jj <Esc>
 imap JJ <Esc>
 
 map <leader><leader> :wa<cr>
 map <leader>sv :source $MYVIMRC<cr>
+
+map <C-o> :NERDTreeToggle<CR>
 
 " }}}
 " ============================================================================
