@@ -25,6 +25,8 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Browsing
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
