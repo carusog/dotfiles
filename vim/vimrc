@@ -63,6 +63,8 @@ else
   silent! colorscheme vim-material
 endif
 
+set hlsearch
+
 
 " }}}
 " ============================================================================
@@ -70,7 +72,15 @@ endif
 " ============================================================================
 
 noremap <space> za
-noremap <leader><space> nohls
+noremap <leader><space> :nohls<cr>
+" Press F4 to toggle highlighting on/off, and show current value.
+noremap <F4> :set hlsearch! hlsearch?<cr>
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
+imap jj <Esc>
+imap JJ <Esc>
+
+map <leader><leader> :wa<cr>
+map <leader>sv :source $MYVIMRC<cr>
 
 " }}}
 " ============================================================================
