@@ -52,9 +52,11 @@ call plug#end()
 " Oceanic
 let g:material_style='oceanic'
 set background=dark
+" Material theme for airline
+let g:airline_theme='material'
 
 if has('gui_running')
-  set guifont=Fira\ Code:h14 columns=80 lines=40
+  set guifont=Fira\ Code:h14
   set macligatures
   silent! colorscheme vim-material
 else
