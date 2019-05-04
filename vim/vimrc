@@ -59,9 +59,9 @@ set guifont=Fira\ Code:h14
 
 if has('gui_running')
   set macligatures
-  silent! colorscheme vim-material
+  silent! colorscheme nord
 else
-  silent! colorscheme vim-material
+  silent! colorscheme nord
 endif
 
 set hlsearch
