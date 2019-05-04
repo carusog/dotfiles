@@ -46,6 +46,7 @@ Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
+filetype plugin indent on
 
 " }}}
 " GUI -------------------------------------------------------------------- {{{
