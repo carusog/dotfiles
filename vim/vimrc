@@ -30,7 +30,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Colors
 " -----------------------------------------------------------------------------
 " Plug 'junegunn/seoul256.vim'
-Plug 'hzchirs/vim-material'
+" Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 
 " Editing
@@ -49,11 +49,7 @@ call plug#end()
 " let g:seoul256_background = 233
 " GUI -------------------------------------------------------------------- {{{
 
-" Oceanic
-let g:material_style='oceanic'
 set background=dark
-" Material theme for airline
-let g:airline_theme='material'
 
 set guifont=Fira\ Code:h14
 
