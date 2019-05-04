@@ -1,26 +1,21 @@
-" ============================================================================
-" .vimrc {{{
-" ============================================================================
+" .vimrc ----------------------------------------------------------------- {{{
 "
 " Author: Giuseppe Caruso <giuseppe@bonsai-studio.net>
 " Source: https://github.com/carusog/dotfiles
 "
 " }}}
-" ============================================================================
-" be iMproved {{{
-" ============================================================================
+" be iMproved ------------------------------------------------------------ {{{
 
 set nocompatible    " set Vim not to be compatible with Vi
 let mapleader=","   " change the leader to be a comma vs slash
 filetype off
 
 " }}}
-" ============================================================================
-" VIM-PLUG BLOCK {{{
-" ============================================================================
-"
+" VIM-PLUG BLOCK --------------------------------------------------------- {{{
 " vim-plug is a very nice, minimalistic Vim plugin manager you can find at
 " https://github.com/junegunn/vim-plug
+" ----------------------------------------------------------------------------
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -29,27 +24,29 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Browsing
+" -----------------------------------------------------------------------------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " Colors
+" -----------------------------------------------------------------------------
 " Plug 'junegunn/seoul256.vim'
 Plug 'hzchirs/vim-material'
 
 " Editing
+" -----------------------------------------------------------------------------
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
+" Fancier status bar
+" -----------------------------------------------------------------------------
 call plug#end()
 
-" }}}
-" ============================================================================
-" GUI {{{
-" ============================================================================
 
 " seoul256 (dark):
 " Range:   233 (darkest) ~ 239 (lightest)
 " Default: 237
 " let g:seoul256_background = 233
+" GUI -------------------------------------------------------------------- {{{
 
 " Oceanic
 let g:material_style='oceanic'
@@ -72,9 +69,7 @@ hi Search guibg=peru guifg=wheat
 hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 " }}}
-" ============================================================================
-" MAPPINGS {{{
-" ============================================================================
+" MAPPINGS --------------------------------------------------------------- {{{
 
 noremap <space> za
 " Press to toggle highlighting on/off, and show current value.
@@ -89,5 +84,4 @@ map <leader>sv :source $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<CR>
 
 " }}}
-" ============================================================================
 " vim: set foldmethod=marker foldlevel=0:
