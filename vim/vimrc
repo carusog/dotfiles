@@ -74,7 +74,6 @@ let g:nord_cursor_line_number_background = 1
 set hlsearch
 set incsearch
 hi Search guibg=peru guifg=wheat
-hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
