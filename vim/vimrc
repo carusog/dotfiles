@@ -35,11 +35,15 @@ Plug 'arcticicestudio/nord-vim'
 
 " Editing
 " -----------------------------------------------------------------------------
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 " Fancier status bar
 " -----------------------------------------------------------------------------
+Plug 'itchyny/lightline.vim'
+
 call plug#end()
 
 
@@ -47,6 +51,7 @@ call plug#end()
 " Range:   233 (darkest) ~ 239 (lightest)
 " Default: 237
 " let g:seoul256_background = 233
+" }}}
 " GUI -------------------------------------------------------------------- {{{
 
 set background=dark
