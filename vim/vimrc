@@ -54,6 +54,7 @@ filetype plugin indent on
 set background=dark
 set number
 set noshowmode
+set laststatus=2
 
 set guifont=Fira\ Code:h16
 
