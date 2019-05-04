@@ -51,8 +51,8 @@ call plug#end()
 " GUI -------------------------------------------------------------------- {{{
 
 set background=dark
+set guifont=Fira\ Code:h16
 
-set guifont=Fira\ Code:h14
 let g:lightline = { 'colorscheme': 'nord' }
 
 if has('gui_running')
