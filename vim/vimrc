@@ -31,6 +31,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " -----------------------------------------------------------------------------
 " Plug 'junegunn/seoul256.vim'
 Plug 'hzchirs/vim-material'
+Plug 'arcticicestudio/nord-vim'
 
 " Editing
 " -----------------------------------------------------------------------------
