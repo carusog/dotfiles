@@ -84,4 +84,19 @@ map <leader>sv :source $MYVIMRC<cr>
 map <C-o> :NERDTreeToggle<CR>
 
 " }}}
-" vim: set foldmethod=marker foldlevel=0:
+" Vim -------------------------------------------------------------------- {{{
+
+augroup ft_vim
+    au!
+
+    au FileType vim setlocal foldmethod=marker keywordprg=:help
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+
+    au FileType vim vnoremap <localleader>S y:@"<CR>
+    au FileType vim nnoremap <localleader>S ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
+
+    au FileType vim inoremap <c-n> <c-x><c-n>
+augroup END
+
+" }}}
