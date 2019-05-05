@@ -48,6 +48,7 @@ Plug 'itchyny/lightline.vim'
 " Git
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
