@@ -88,7 +88,7 @@ imap JJ <Esc>
 map <leader><leader> :wa<cr>
 map <leader>sv :source $MYVIMRC<cr>
 
-map <C-o> :NERDTreeToggle<CR>
+map <leader>ntt :NERDTreeToggle<CR>
 
 " }}}
 " Vim -------------------------------------------------------------------- {{{
