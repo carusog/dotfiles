@@ -27,6 +27,7 @@ Plug 'junegunn/fzf.vim'
 " -----------------------------------------------------------------------------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jlanzarotta/bufexplorer'
 
 " Colors
 " -----------------------------------------------------------------------------
