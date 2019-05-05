@@ -43,6 +43,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
+" Javascript
+" -----------------------------------------------------------------------------
+Plug 'pangloss/vim-javascript'
+
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
