@@ -63,6 +63,24 @@ set number
 set noshowmode
 set laststatus=2
 
+" set up cursore when in insert mode to bar
+" when normal mode to block
+" https://stackoverflow.com/a/42118416/877464 {{{
+"
+" Ps = 0  -> blinking block
+" Ps = 1  -> blinking block (default)
+" Ps = 2  -> steady block
+" Ps = 3  -> blinking underline
+" Ps = 4  -> steady underline
+" Ps = 5  -> blinking bar (xterm)
+" Ps = 6  -> steady bar (xterm)
+" }}}
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" https://stackoverflow.com/a/6489348/877464
+" autocmd InsertEnter,InsertLeave * set cul!
+
 set guifont=Fira\ Code:h16
 
 let g:lightline = { 'colorscheme': 'nord' }
