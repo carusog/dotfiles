@@ -41,6 +41,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
 
 " Fancier status bar
 " -----------------------------------------------------------------------------
