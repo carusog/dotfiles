@@ -50,6 +50,7 @@ Plug 'itchyny/lightline.vim'
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
