@@ -108,6 +108,10 @@ set hlsearch
 set incsearch
 hi Search guibg=peru guifg=wheat
 
+" Better invisible characters
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
