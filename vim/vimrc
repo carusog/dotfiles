@@ -9,6 +9,7 @@
 set nocompatible    " set Vim not to be compatible with Vi
 let mapleader=","   " change the leader to be a comma vs slash
 filetype off
+set autoread
 
 " }}}
 " VIM-PLUG BLOCK --------------------------------------------------------- {{{
