@@ -11,6 +11,8 @@ let mapleader=","   " change the leader to be a comma vs slash
 filetype off
 set autoread
 set autoindent
+set ignorecase
+set smartcase
 
 " Better search with, E.G., :find
 " Source: https://stackoverflow.com/a/16084326/877464
