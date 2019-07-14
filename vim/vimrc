@@ -23,6 +23,9 @@ set wildignore+=*/node_modules/**/*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignore+=tags
 set wildignore+=*.tar.*
+set wildignore+=*/bower_components/**/*
+set wildignore+=*/dist/**/*
+set wildignore+=*/public/static/**/* " Gatsby dist folder
 " }}}
 " VIM-PLUG BLOCK --------------------------------------------------------- {{{
 " vim-plug is a very nice, minimalistic Vim plugin manager you can find at
