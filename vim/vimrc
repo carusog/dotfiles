@@ -132,6 +132,7 @@ endif
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
+" Toggle foldings
 noremap <space> za
 " Press to toggle highlighting on/off, and show current value.
 noremap <leader><space> :set hlsearch! hlsearch?<cr>
