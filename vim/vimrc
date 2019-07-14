@@ -19,7 +19,7 @@ set wildignorecase     " Case insensitive search
 "" Ignored folders
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
-set wildignore+=node_modules
+set wildignore+=*/node_modules/**/*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignore+=tags
 set wildignore+=*.tar.*
