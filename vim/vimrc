@@ -12,6 +12,17 @@ filetype off
 set autoread
 set autoindent
 
+" Better search with, E.G., :find
+" Source: https://stackoverflow.com/a/16084326/877464
+set wildmode=list:full " Shows results in a vertical list
+set wildignorecase     " Case insensitive search
+"" Ignored folders
+set wildignore=*.swp,*.bak
+set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
+set wildignore+=node_modules
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore+=tags
+set wildignore+=*.tar.*
 " }}}
 " VIM-PLUG BLOCK --------------------------------------------------------- {{{
 " vim-plug is a very nice, minimalistic Vim plugin manager you can find at
