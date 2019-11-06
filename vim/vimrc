@@ -92,6 +92,7 @@ set background=dark
 set number
 set noshowmode
 set laststatus=2
+set nowrap
 
 " set up cursore when in insert mode to bar
 " when normal mode to block
