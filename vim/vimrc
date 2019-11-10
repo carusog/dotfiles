@@ -53,8 +53,6 @@ Plug 'jlanzarotta/bufexplorer'
 
 " Colors
 " -----------------------------------------------------------------------------
-" Plug 'junegunn/seoul256.vim'
-" Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
 
 " Editing
