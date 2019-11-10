@@ -95,6 +95,7 @@ set number
 set noshowmode
 set laststatus=2
 set nowrap
+set scrolloff=5		" keep the cursor at least 5 lines from window border [9]
 
 " set up cursore when in insert mode to bar
 " when normal mode to block
@@ -177,4 +178,7 @@ augroup ft_vim
     au FileType vim inoremap <c-n> <c-x><c-n>
 augroup END
 
+" }}}
+" Sources ---------------------------------------------------------------- {{{
+" [9] https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
 " }}}
