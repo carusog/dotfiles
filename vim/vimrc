@@ -44,6 +44,7 @@ Plug 'junegunn/fzf.vim'
 " Browsing
 " -----------------------------------------------------------------------------
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+  let NERDTreeChDirMode = 2
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
   let g:ctrlp_custom_ignore = 'node_modules'
