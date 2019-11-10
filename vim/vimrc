@@ -143,8 +143,8 @@ endif
 
 " Toggle foldings
 noremap <space> za
-" Press to toggle highlighting on/off, and show current value.
-noremap <leader><space> :set hlsearch! hlsearch?<cr>
+" hide search results highlight
+noremap <leader><space> :noh<cr> 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 imap jj <Esc>
 imap JJ <Esc>
