@@ -13,6 +13,7 @@ set autoread
 set autoindent
 set ignorecase
 set smartcase
+set encoding=UTF-8
 
 " Better search with, E.G., :find
 " Source: https://stackoverflow.com/a/16084326/877464
@@ -50,6 +51,7 @@ Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
   let g:ctrlp_custom_ignore = 'node_modules'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'ryanoasis/vim-devicons'
 
 " Colors
 " -----------------------------------------------------------------------------
@@ -118,7 +120,7 @@ let &t_EI = "\e[2 q"
 " https://stackoverflow.com/a/6489348/877464
 " autocmd InsertEnter,InsertLeave * set cul!
 
-set guifont=Fira\ Code:h16
+set guifont=Furacode\ Nerd\ Font:h16
 
 let g:lightline = { 'colorscheme': 'nord' }
 
