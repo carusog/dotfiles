@@ -66,6 +66,10 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
 
+" Utilities
+" -----------------------------------------------------------------------------
+Plug 'tpope/vim-unimpaired'	" Just because of `]b/[b` for next/prev buffer
+
 " Javascript
 " -----------------------------------------------------------------------------
 Plug 'pangloss/vim-javascript'
