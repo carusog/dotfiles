@@ -55,7 +55,11 @@ Plug 'ryanoasis/vim-devicons'
 
 " Colors
 " -----------------------------------------------------------------------------
-Plug 'arcticicestudio/nord-vim'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'shinchu/lightline-gruvbox.vim'
 
 " Editing
 " -----------------------------------------------------------------------------
@@ -122,22 +126,31 @@ let &t_EI = "\e[2 q"
 
 set guifont=Furacode\ Nerd\ Font:h16
 
-let g:lightline = { 'colorscheme': 'nord' }
+" Dracula theme {{{
+" -----------------------------------------------
+colorscheme dracula
+let g:lightline = { 'colorscheme': 'dracula' }
+" }}}
+" Nord theme {{{
+" -----------------------------------------------
+"silent! colorscheme nord
+"let g:nord_italic = 1
+"let g:nord_underline = 1
+"let g:nord_cursor_line_number_background = 1
+"hi Search guibg=peru guifg=wheat
+" }}}
+" gruvbox theme {{{
+" -----------------------------------------------
+"silent! colorscheme gruvbox
+"let g:lightline = { 'colorscheme': 'gruvbox' }
+" }}}
 
 if has('gui_running')
   set macligatures
-  silent! colorscheme nord
-else
-  silent! colorscheme nord
 endif
-
-let g:nord_italic = 1
-let g:nord_underline = 1
-let g:nord_cursor_line_number_background = 1
 
 set hlsearch
 set incsearch
-hi Search guibg=peru guifg=wheat
 
 " Better invisible characters
 if &listchars ==# 'eol:$'
