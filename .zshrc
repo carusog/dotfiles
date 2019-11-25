@@ -113,3 +113,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 export PATH="$PATH:${HOME}/src/flutter/bin"
 
+source $HOME/.bashrc
