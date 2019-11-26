@@ -72,7 +72,7 @@ Plug 'junegunn/goyo.vim'
 
 " Utilities
 " -----------------------------------------------------------------------------
-Plug 'tpope/vim-unimpaired'	" Just because of `]b/[b` for next/prev buffer
+Plug 'tpope/vim-unimpaired'     " Just because of `]b/[b` for next/prev buffer
 
 " Javascript
 " -----------------------------------------------------------------------------
@@ -99,14 +99,15 @@ filetype plugin indent on
 " }}}
 " GUI -------------------------------------------------------------------- {{{
 
+set expandtab
 set background=dark
 set number
 set noshowmode
 set laststatus=2
 set nowrap
-set scrolloff=5		" keep the cursor at least 5 lines from window border [9]
+set scrolloff=5         " keep the cursor at least 5 lines from window border [9]
 set termguicolors
-set t_Co=256		" try to fix color issues in terminal
+set t_Co=256            " try to fix color issues in terminal
 syntax on
 
 " set up cursore when in insert mode to bar
