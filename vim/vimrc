@@ -110,7 +110,7 @@ set termguicolors
 set t_Co=256            " try to fix color issues in terminal
 syntax on
 
-" set up cursore when in insert mode to bar
+" set up cursor when in insert mode to bar
 " when normal mode to block
 " https://stackoverflow.com/a/42118416/877464 {{{
 "
