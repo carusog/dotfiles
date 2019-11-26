@@ -187,6 +187,32 @@ map <leader>ntt :NERDTreeToggle<CR>
 " nnoremap <leader>v :vert sfind *
 " nnoremap <leader>t :tabfind *
 
+" Windows splits
+" (Each symbol is what you actually get by pressing Alt+char)
+" Maps Alt-[h,j,k,l] to resizing a window split
+map <silent> <Left>  <C-w>>
+map <silent> <Up>    <C-W>+
+map <silent> <Down>  <C-W>-
+map <silent> <Right> <C-w><
+" Maps Shift+Alt-[h,j,k,l] to resizing a window split 10 times
+map <silent> <S-Left>  <C-w>10>
+map <silent> <S-Up>    <C-W>10+
+map <silent> <S-Down>  <C-W>10-
+map <silent> <S-Right> <C-w>10<
+" Makes all split same size
+map <silent> ≠ <C-w>=
+" Maps Alt-[s.v] to horizontal and vertical split respectively
+map <silent> ß :split<CR>
+map <silent> √ :vsplit<CR>
+" Maps arrow keys for moving between windows
+map <silent> ˙ <C-w><C-h>
+map <silent> ∆ <C-w><C-j>
+map <silent> ˚ <C-w><C-k>
+map <silent> ¬ <C-w><C-l>
+" Maps Alt-[n,p] for moving next and previous window respectively
+map <silent> ‘ <C-w><C-w>
+map <silent> “ <C-w><S-w>
+
 " }}}
 " Vim -------------------------------------------------------------------- {{{
 
