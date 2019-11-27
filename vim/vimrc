@@ -15,8 +15,7 @@ set ignorecase
 set smartcase
 set encoding=UTF-8
 
-" Better search with, E.G., :find
-" Source: https://stackoverflow.com/a/16084326/877464
+" Better search with, E.G., :find [betterSearch]
 set wildmode=list:full " Shows results in a vertical list
 set wildignorecase     " Case insensitive search
 "" Ignored folders
@@ -105,14 +104,13 @@ set number
 set noshowmode
 set laststatus=2
 set nowrap
-set scrolloff=5         " keep the cursor at least 5 lines from window border [9]
+set scrolloff=5         " keep the cursor at least 5 lines from window border [visibleLines]
 set termguicolors
 set t_Co=256            " try to fix color issues in terminal
 syntax on
 
 " set up cursor when in insert mode to bar
-" when normal mode to block
-" https://stackoverflow.com/a/42118416/877464 {{{
+" when normal mode to block [cursor] {{{
 "
 " Ps = 0  -> blinking block
 " Ps = 1  -> blinking block (default)
@@ -231,5 +229,7 @@ augroup END
 
 " }}}
 " Sources ---------------------------------------------------------------- {{{
-" [9] https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
+" [cursor]       https://stackoverflow.com/a/42118416/877464
+" [betterSearch] https://stackoverflow.com/a/16084326/877464
+" [visibleLines] https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
 " }}}
