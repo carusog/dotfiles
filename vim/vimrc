@@ -231,6 +231,9 @@ map <silent> ‘ <C-w><C-w>
 map <silent> “ <C-w><S-w>
 
 map <leader>l :set list!<CR>
+
+nnoremap - ddkP
+nnoremap + ddp
 " }}}
 " Vim -------------------------------------------------------------------- {{{
 
