@@ -120,6 +120,7 @@ filetype plugin indent on
 set expandtab
 set background=dark
 set number
+set relativenumber
 set noshowmode
 set laststatus=2
 set nowrap
