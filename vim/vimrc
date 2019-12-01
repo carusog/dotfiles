@@ -85,16 +85,24 @@ Plug 'chr4/nginx.vim'
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
-        let g:lightline = {
-              \ 'colorscheme': 'dracula',
-              \ 'active': {
-              \   'left': [ [ 'mode', 'paste' ],
-              \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-              \ },
-              \ 'component_function': {
-              \   'gitbranch': 'fugitive#head'
-              \ },
-              \ }
+let g:lightline = {
+\    'colorscheme': 'dracula',
+\    'active': {
+\        'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ]
+\    },
+\    'component_function': {
+\        'gitbranch': 'fugitive#head',
+\        'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
+\    },
+\}
+function! LightLineFixIndexFiles()
+    let filenameonly = expand('%:t:r')
+    if filenameonly ==? "index"
+        return remove(split(expand("%:h"), "/"), -1) . "/" . expand("%:t")
+    else 
+        return expand("%:t")
+    endif
+endfunction
 
 " Git
 " -----------------------------------------------------------------------------
