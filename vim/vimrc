@@ -221,6 +221,7 @@ map <silent> ¬ <C-w><C-l>
 map <silent> ‘ <C-w><C-w>
 map <silent> “ <C-w><S-w>
 
+map <leader>l :set list!<CR>
 " }}}
 " Vim -------------------------------------------------------------------- {{{
 
