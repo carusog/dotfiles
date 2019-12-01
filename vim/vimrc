@@ -168,9 +168,7 @@ set hlsearch
 set incsearch
 
 " Better invisible characters
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:+
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
@@ -183,6 +181,7 @@ imap jj <Esc>
 imap JJ <Esc>
 
 map <leader><leader> :wa<cr>
+
 map <leader>sv :source $MYVIMRC<cr>
 map <leader>ev :edit $MYVIMRC<cr>
 
