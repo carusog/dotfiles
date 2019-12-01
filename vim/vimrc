@@ -85,6 +85,16 @@ Plug 'chr4/nginx.vim'
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
+        let g:lightline = {
+              \ 'colorscheme': 'dracula',
+              \ 'active': {
+              \   'left': [ [ 'mode', 'paste' ],
+              \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+              \ },
+              \ 'component_function': {
+              \   'gitbranch': 'fugitive#head'
+              \ },
+              \ }
 
 " Git
 " -----------------------------------------------------------------------------
@@ -135,7 +145,6 @@ set guifont=Furacode\ Nerd\ Font:h16
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
-let g:lightline = { 'colorscheme': 'dracula' }
 " }}}
 " Nord theme {{{
 " -----------------------------------------------
