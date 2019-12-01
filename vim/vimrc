@@ -186,15 +186,15 @@ noremap <space> za
 " hide search results highlight
 noremap <leader><space> :noh<cr> 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
-imap jj <Esc>
-imap JJ <Esc>
+inoremap jj <Esc>
+inoremap JJ <Esc>
 
-map <leader><leader> :wa<cr>
+nnoremap <leader><leader> :wa<cr>
 
-map <leader>sv :source $MYVIMRC<cr>
-map <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
 
-map <leader>ntt :NERDTreeToggle<CR>
+nnoremap <leader>ntt :NERDTreeToggle<CR>
 
 " Better search (see above)
 "" Correctly set path to search in current folder recursively
@@ -207,30 +207,30 @@ map <leader>ntt :NERDTreeToggle<CR>
 " Windows splits
 " (Each symbol is what you actually get by pressing Alt+char)
 " Maps Alt-[h,j,k,l] to resizing a window split
-map <silent> <Left>  <C-w>>
-map <silent> <Up>    <C-W>+
-map <silent> <Down>  <C-W>-
-map <silent> <Right> <C-w><
+nnoremap <silent> <Left>  <C-w>>
+nnoremap <silent> <Up>    <C-W>+
+nnoremap <silent> <Down>  <C-W>-
+nnoremap <silent> <Right> <C-w><
 " Maps Shift+Alt-[h,j,k,l] to resizing a window split 10 times
-map <silent> <S-Left>  <C-w>10>
-map <silent> <S-Up>    <C-W>10+
-map <silent> <S-Down>  <C-W>10-
-map <silent> <S-Right> <C-w>10<
+nnoremap <silent> <S-Left>  <C-w>10>
+nnoremap <silent> <S-Up>    <C-W>10+
+nnoremap <silent> <S-Down>  <C-W>10-
+nnoremap <silent> <S-Right> <C-w>10<
 " Makes all split same size
-map <silent> ≠ <C-w>=
+nnoremap <silent> ≠ <C-w>=
 " Maps Alt-[s.v] to horizontal and vertical split respectively
-map <silent> ß :split<CR>
-map <silent> √ :vsplit<CR>
+nnoremap <silent> ß :split<CR>
+nnoremap <silent> √ :vsplit<CR>
 " Maps arrow keys for moving between windows
-map <silent> ˙ <C-w><C-h>
-map <silent> ∆ <C-w><C-j>
-map <silent> ˚ <C-w><C-k>
-map <silent> ¬ <C-w><C-l>
+nnoremap <silent> ˙ <C-w><C-h>
+nnoremap <silent> ∆ <C-w><C-j>
+nnoremap <silent> ˚ <C-w><C-k>
+nnoremap <silent> ¬ <C-w><C-l>
 " Maps Alt-[n,p] for moving next and previous window respectively
-map <silent> ‘ <C-w><C-w>
-map <silent> “ <C-w><S-w>
+nnoremap <silent> ‘ <C-w><C-w>
+nnoremap <silent> “ <C-w><S-w>
 
-map <leader>l :set list!<CR>
+nnoremap <leader>l :set list!<CR>
 
 nnoremap - ddkP
 nnoremap + ddp
