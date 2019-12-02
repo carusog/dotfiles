@@ -15,6 +15,11 @@ set ignorecase
 set smartcase
 set encoding=UTF-8
 
+" fix default vimrc modelines value when $VIM,
+" for some reason, in not set so system vimrc 
+" falls back to /usr/share/vim/vimrc
+set modelines=5     
+
 " Better search with, E.G., :find [betterSearch]
 set wildmode=list:full " Shows results in a vertical list
 set wildignorecase     " Case insensitive search
