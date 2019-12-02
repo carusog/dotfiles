@@ -84,6 +84,24 @@ Plug 'chr4/nginx.vim'
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\    'colorscheme': 'dracula',
+\    'active': {
+\        'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filenameOrLastFolderOfIndex', 'modified' ] ]
+\    },
+\    'component_function': {
+\        'gitbranch': 'fugitive#head',
+\        'filenameOrLastFolderOfIndex': 'LightLineFixIndexFiles'
+\    },
+\}
+function! LightLineFixIndexFiles()
+    let filenameonly = expand('%:t:r')
+    if filenameonly ==? "index"
+        return remove(split(expand("%:h"), "/"), -1) . "/" . expand("%:t")
+    else 
+        return expand("%:t")
+    endif
+endfunction
 
 " Git
 " -----------------------------------------------------------------------------
@@ -101,6 +119,7 @@ filetype plugin indent on
 set expandtab
 set background=dark
 set number
+set relativenumber
 set noshowmode
 set laststatus=2
 set nowrap
@@ -133,7 +152,6 @@ set guifont=Furacode\ Nerd\ Font:h16
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
-let g:lightline = { 'colorscheme': 'dracula' }
 " }}}
 " Nord theme {{{
 " -----------------------------------------------
@@ -157,9 +175,7 @@ set hlsearch
 set incsearch
 
 " Better invisible characters
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:+
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
@@ -168,14 +184,15 @@ noremap <space> za
 " hide search results highlight
 noremap <leader><space> :noh<cr> 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
-imap jj <Esc>
-imap JJ <Esc>
+inoremap jj <Esc>
+inoremap JJ <Esc>
 
-map <leader><leader> :wa<cr>
-map <leader>sv :source $MYVIMRC<cr>
-map <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader><leader> :wa<cr>
 
-map <leader>ntt :NERDTreeToggle<CR>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+
+nnoremap <leader>ntt :NERDTreeToggle<CR>
 
 " Better search (see above)
 "" Correctly set path to search in current folder recursively
@@ -188,43 +205,43 @@ map <leader>ntt :NERDTreeToggle<CR>
 " Windows splits
 " (Each symbol is what you actually get by pressing Alt+char)
 " Maps Alt-[h,j,k,l] to resizing a window split
-map <silent> <Left>  <C-w>>
-map <silent> <Up>    <C-W>+
-map <silent> <Down>  <C-W>-
-map <silent> <Right> <C-w><
+nnoremap <silent> <Left>  <C-w>>
+nnoremap <silent> <Up>    <C-W>+
+nnoremap <silent> <Down>  <C-W>-
+nnoremap <silent> <Right> <C-w><
 " Maps Shift+Alt-[h,j,k,l] to resizing a window split 10 times
-map <silent> <S-Left>  <C-w>10>
-map <silent> <S-Up>    <C-W>10+
-map <silent> <S-Down>  <C-W>10-
-map <silent> <S-Right> <C-w>10<
+nnoremap <silent> <S-Left>  <C-w>10>
+nnoremap <silent> <S-Up>    <C-W>10+
+nnoremap <silent> <S-Down>  <C-W>10-
+nnoremap <silent> <S-Right> <C-w>10<
 " Makes all split same size
-map <silent> ≠ <C-w>=
+nnoremap <silent> ≠ <C-w>=
 " Maps Alt-[s.v] to horizontal and vertical split respectively
-map <silent> ß :split<CR>
-map <silent> √ :vsplit<CR>
+nnoremap <silent> ß :split<CR>
+nnoremap <silent> √ :vsplit<CR>
 " Maps arrow keys for moving between windows
-map <silent> ˙ <C-w><C-h>
-map <silent> ∆ <C-w><C-j>
-map <silent> ˚ <C-w><C-k>
-map <silent> ¬ <C-w><C-l>
+nnoremap <silent> ˙ <C-w><C-h>
+nnoremap <silent> ∆ <C-w><C-j>
+nnoremap <silent> ˚ <C-w><C-k>
+nnoremap <silent> ¬ <C-w><C-l>
 " Maps Alt-[n,p] for moving next and previous window respectively
-map <silent> ‘ <C-w><C-w>
-map <silent> “ <C-w><S-w>
+nnoremap <silent> ‘ <C-w><C-w>
+nnoremap <silent> “ <C-w><S-w>
 
+nnoremap <leader>l :set list!<CR>
+
+nnoremap - ddkP
+nnoremap + ddp
 " }}}
 " Vim -------------------------------------------------------------------- {{{
 
 augroup ft_vim
     au!
-
-    au FileType vim setlocal foldmethod=marker keywordprg=:help
+    " set help pages to a width of 78 characters
     au FileType help setlocal textwidth=78
-    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-
-    au FileType vim vnoremap <localleader>S y:@"<CR>
-    au FileType vim nnoremap <localleader>S ^vg_y:execute @@<cr>:echo 'Sourced line.'<cr>
-
-    au FileType vim inoremap <c-n> <c-x><c-n>
+    " open help text in a window to the right of current file
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif 
+    "au FileType vim inoremap <c-n> <c-x><c-n>
 augroup END
 
 " }}}
@@ -233,3 +250,4 @@ augroup END
 " [betterSearch] https://stackoverflow.com/a/16084326/877464
 " [visibleLines] https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
 " }}}
+" vim: ft=vim:foldmethod=marker:tabstop=4:shiftwidth=4:expandtab
