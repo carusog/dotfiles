@@ -114,6 +114,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
+" Languages
+" -----------------------------------------------------------------------------
+Plug 'sheerun/vim-polyglot'
+Plug 'lumiliet/vim-twig'
+
 call plug#end()
 
 filetype plugin indent on
