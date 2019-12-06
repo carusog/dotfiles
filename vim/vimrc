@@ -137,6 +137,7 @@ set scrolloff=5         " keep the cursor at least 5 lines from window border [v
 set termguicolors
 set t_Co=256            " try to fix color issues in terminal
 syntax on
+set equalalways
 
 " set up cursor when in insert mode to bar
 " when normal mode to block [cursor] {{{
