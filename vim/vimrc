@@ -14,6 +14,8 @@ set autoindent
 set ignorecase
 set smartcase
 set encoding=UTF-8
+set hidden
+set autowriteall
 
 " fix default vimrc modelines value when $VIM,
 " for some reason, in not set so system vimrc 
