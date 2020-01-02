@@ -63,8 +63,8 @@ Plug 'ryanoasis/vim-devicons'
 
 " Colors
 " -----------------------------------------------------------------------------
-"Plug 'arcticicestudio/nord-vim'
-"Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'shinchu/lightline-gruvbox.vim'
