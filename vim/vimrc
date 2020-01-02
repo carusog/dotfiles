@@ -154,7 +154,7 @@ set cursorline
 " highlight text overflowing text without setting textwidth or wrap [overlength]
 augroup vimrc_autocmds
   autocm BufEnter * highlight OverLength ctermbg=black guibg=black
-  autocmd BufEnter * match OverLength /\%75v.*/
+  autocmd BufEnter * match OverLength /\%81v.*/
 augroup END
 
 " set up cursor when in insert mode to bar
@@ -266,8 +266,8 @@ nnoremap + ddp
 
 augroup ft_vim
     au!
-    " set help pages to a width of 78 characters
-    au FileType help setlocal textwidth=78
+    " set help pages to a width of 80 characters
+    au FileType help setlocal textwidth=80
     " open help text in a window to the right of current file
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif 
     "au FileType vim inoremap <c-n> <c-x><c-n>
