@@ -44,7 +44,6 @@ set wildignore+=*/public/static/**/* " Gatsby dist folder
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " set Rgp command to use Rg with bat preview
