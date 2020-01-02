@@ -143,6 +143,12 @@ set termguicolors
 set t_Co=256            " try to fix color issues in terminal
 syntax on
 set equalalways
+set cursorline
+" highlight text overflowing text without setting textwidth or wrap [overlength]
+augroup vimrc_autocmds
+  autocm BufEnter * highlight OverLength ctermbg=black guibg=black
+  autocmd BufEnter * match OverLength /\%75v.*/
+augroup END
 
 " set up cursor when in insert mode to bar
 " when normal mode to block [cursor] {{{
@@ -262,8 +268,9 @@ augroup END
 
 " }}}
 " Sources ---------------------------------------------------------------- {{{
-" [cursor]       https://stackoverflow.com/a/42118416/877464
-" [betterSearch] https://stackoverflow.com/a/16084326/877464
-" [visibleLines] https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
+" [cursor]          https://stackoverflow.com/a/42118416/877464
+" [betterSearch]    https://stackoverflow.com/a/16084326/877464
+" [visibleLines]    https://vim.fandom.com/wiki/Make_search_results_appear_in_the_middle_of_the_screen
+" [overlength]      https://stackoverflow.com/questions/395114/vim-syntax-coloring-how-do-i-highlight-long-lines-only/10993757#10993757
 " }}}
 " vim: ft=vim:foldmethod=marker:tabstop=4:shiftwidth=4:expandtab
