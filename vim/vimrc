@@ -41,7 +41,6 @@ set wildignore+=*/public/static/**/* " Gatsby dist folder
 " https://github.com/junegunn/vim-plug
 " ----------------------------------------------------------------------------
 
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -122,6 +121,10 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 " -----------------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot'
 Plug 'lumiliet/vim-twig'
+Plug 'mustache/vim-mustache-handlebars' 
+" {{{
+let g:mustache_abbreviations = 1
+" }}}
 
 call plug#end()
 
