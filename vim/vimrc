@@ -308,6 +308,8 @@ set guifont=Furacode\ Nerd\ Font:h16
 let g:dracula_italic = 0
 colorscheme dracula
 highlight Normal ctermbg=None
+" Coc symbol highlight custom color
+highlight CocHighlightText ctermfg=Black ctermbg=Yellow guifg=#272936 guibg=#f3f89d
 " }}}
 " Nord theme {{{
 " -----------------------------------------------
