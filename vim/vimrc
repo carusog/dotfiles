@@ -150,7 +150,7 @@ filetype plugin indent on
 set nobackup
 set nowritebackup
 set cmdheight=2     " better display for messages
-set updatetime=300
+set updatetime=300 " it looks like it breaks messages
 set shortmess+=c
 set signcolumn=yes
 
