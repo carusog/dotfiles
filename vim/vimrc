@@ -277,10 +277,11 @@ set t_Co=256            " try to fix color issues in terminal
 syntax on
 set equalalways
 set cursorline
+set cursorcolumn
 " highlight text overflowing text without setting textwidth or wrap [overlength]
 augroup vimrc_autocmds
-  autocm BufEnter * highlight OverLength ctermbg=black guibg=black
-  autocmd BufEnter * match OverLength /\%75v.*/
+  autocmd BufEnter * highlight OverLength ctermbg=black guibg=black
+  autocmd BufEnter * match OverLength /\%81v.*/
 augroup END
 
 " set up cursor when in insert mode to bar
