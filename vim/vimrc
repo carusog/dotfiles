@@ -45,7 +45,7 @@ call plug#begin('~/.vim/plugged')
 
 " Use CoC release branch (Recommended)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_node_path = '/Users/giuseppe/.nvm/versions/node/v10.15.3/bin/node'
+source $HOME/.vim/nodepath.vim 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
