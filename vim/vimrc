@@ -98,6 +98,7 @@ Plug 'ervandew/supertab'
 " Utilities
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-unimpaired'     " Just because of `]b/[b` for next/prev buffer
+Plug 'junegunn/vim-emoji'       " Emojy in VIM
 
 " Javascript
 " -----------------------------------------------------------------------------
