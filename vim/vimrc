@@ -341,12 +341,14 @@ let &t_EI = "\e[2 q"
 
 set guifont=Furacode\ Nerd\ Font:h16
 
+" -----------------------------------------------
 " Dracula theme {{{
 " -----------------------------------------------
-let g:dracula_italic = 0
-colorscheme dracula
-highlight Normal ctermbg=None
+"colorscheme dracula
+" let g:dracula_italic = 0
+"highlight Normal ctermbg=None
 " }}}
+" -----------------------------------------------
 " Nord theme {{{
 " -----------------------------------------------
 "silent! colorscheme nord
@@ -355,11 +357,28 @@ highlight Normal ctermbg=None
 "let g:nord_cursor_line_number_background = 1
 "hi Search guibg=peru guifg=wheat
 " }}}
+" -----------------------------------------------
 " gruvbox theme {{{
 " -----------------------------------------------
 "silent! colorscheme gruvbox
 "let g:lightline = { 'colorscheme': 'gruvbox' }
 " }}}
+" -----------------------------------------------
+" Seoul256 {{{
+" -----------------------------------------------
+" dark:
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+let g:seoul256_background = 234
+
+" light:
+"   Range:   252 (darkest) ~ 256 (lightest)
+"   Default: 253
+let g:seoul256_light_background = 253
+
+colorscheme seoul256
+" }}}
+" -----------------------------------------------
 
 if has('gui_running')
   set macligatures
