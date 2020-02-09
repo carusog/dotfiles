@@ -405,7 +405,8 @@ nnoremap <leader><leader> :wa<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :edit $MYVIMRC<CR>
 
-nnoremap <leader>ntt :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Better search (see above)
 "" Correctly set path to search in current folder recursively
