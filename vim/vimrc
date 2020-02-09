@@ -59,7 +59,7 @@ command! -bang -nargs=* Rgp call fzf#vim#grep(
 
 
 " Browsing
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   let NERDTreeShowBookmarks = 1
   let NERDTreeChDirMode = 2
@@ -67,18 +67,20 @@ Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
   let g:ctrlp_custom_ignore = 'node_modules'
 Plug 'jlanzarotta/bufexplorer'
+" /Browsing }}}
 
 " Colors
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/seoul256.vim'
 Plug 'nightsense/cosmic_latte'
+" /Colors }}}
 
 " Editing
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 " Emmet settings {{{
@@ -89,12 +91,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
-Plug 'ervandew/supertab'
+" /Editing }}}
 
 " Utilities
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'tpope/vim-unimpaired'     " Just because of `]b/[b` for next/prev buffer
 Plug 'junegunn/vim-emoji'       " Emojy in VIM
+" /Utilities }}}
 
 " Javascript
 " -----------------------------------------------------------------------------
@@ -107,6 +110,7 @@ Plug 'chr4/nginx.vim'
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
+" Lightline settings {{{
 let g:lightline = {
 \    'colorscheme': 'dracula',
 \    'active': {
@@ -125,9 +129,10 @@ function! LightLineFixIndexFiles()
         return expand("%:t")
     endif
 endfunction
+" /Lightline settings }}}
 
 " Git
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'xuyuanp/nerdtree-git-plugin'
@@ -140,15 +145,17 @@ if emoji#available()
         \ }
 endif
 " /Custom indicators }}}
+" /Git }}}
 
 " Languages
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'sheerun/vim-polyglot'
 Plug 'lumiliet/vim-twig'
 Plug 'mustache/vim-mustache-handlebars' 
-" {{{
+" handlebars settings {{{
 let g:mustache_abbreviations = 1
-" }}}
+" /handlebars settings }}}
+" /Languages }}}
 
 call plug#end()
 
