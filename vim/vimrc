@@ -71,15 +71,15 @@ Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
   let g:ctrlp_custom_ignore = 'node_modules'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'ryanoasis/vim-devicons'
 
 " Colors
 " -----------------------------------------------------------------------------
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'junegunn/seoul256.vim'
+Plug 'nightsense/cosmic_latte'
 
 " Editing
 " -----------------------------------------------------------------------------
