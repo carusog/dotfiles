@@ -135,6 +135,15 @@ endfunction
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'xuyuanp/nerdtree-git-plugin'
+" Custom indicators {{{
+if emoji#available()
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : emoji#for('zap'),
+        \ "Staged"    : emoji#for('rocket'),
+        \ "Dirty"     : "~",
+        \ }
+endif
+" /Custom indicators }}}
 
 " Languages
 " -----------------------------------------------------------------------------
