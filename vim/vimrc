@@ -175,6 +175,13 @@ set updatetime=300 " it looks like it breaks messages
 set shortmess+=c
 set signcolumn=yes
 
+" Use <CR> to confirm completion, 
+" `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " is the Pop Up Menu open?
@@ -201,13 +208,6 @@ let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, 
-" `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -267,8 +267,9 @@ omap af <Plug>(coc-funcobj-a)
 
 " Use <C-d> for select selections ranges,
 " needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
+" mmmh, nope. It's just a joke: https://github.com/neoclide/coc.nvim/issues/1000
+"nmap <silent> <C-d> <Plug>(coc-range-select)
+"xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -284,15 +285,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -375,15 +376,15 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:+
 " Toggle foldings
 noremap <space><space> za
 " hide search results highlight
-noremap <leader><space> :noh<cr> 
+noremap <leader><space> :noh<CR> 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 inoremap jj <Esc>
 inoremap JJ <Esc>
 
-nnoremap <leader><leader> :wa<cr>
+nnoremap <leader><leader> :wa<CR>
 
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :edit $MYVIMRC<CR>
 
 nnoremap <leader>ntt :NERDTreeToggle<CR>
 
@@ -425,6 +426,7 @@ nnoremap <leader>l :set list!<CR>
 
 nnoremap - ddkP
 nnoremap + ddp
+
 " }}}
 " Vim -------------------------------------------------------------------- {{{
 
