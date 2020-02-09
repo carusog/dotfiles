@@ -85,6 +85,10 @@ Plug 'nightsense/cosmic_latte'
 " -----------------------------------------------------------------------------
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
+" Emmet settings {{{
+let g:user_emmet_leader_key = '<C-E>'
+let g:user_emmet_expandabbr_key = '<C-E>' " which is equivalent to <C-e><C-e>
+" /Emmet settings }}}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
