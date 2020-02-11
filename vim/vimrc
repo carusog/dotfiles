@@ -135,16 +135,6 @@ endfunction
 " ------------------------------------------------------------------------- {{{
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'xuyuanp/nerdtree-git-plugin'
-" Custom indicators {{{
-if emoji#available()
-    let g:NERDTreeIndicatorMapCustom = {
-        \ "Modified"  : emoji#for('zap'),
-        \ "Staged"    : emoji#for('rocket'),
-        \ "Dirty"     : "~",
-        \ }
-endif
-" /Custom indicators }}}
 " /Git }}}
 
 " Languages
@@ -396,6 +386,16 @@ set incsearch
 
 " Better invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:+
+
+" Custom indicators for nerdtree-git-plugin {{{
+if emoji#available()
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : emoji#for('zap'),
+        \ "Staged"    : emoji#for('rocket'),
+        \ "Dirty"     : "~",
+        \ }
+endif
+" /Custom indicators }}}
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
