@@ -67,7 +67,7 @@ ZSH_THEME="honukai"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  # vi-mode
+  vi-mode
   z
   # zsh-autosuggestions
 )
