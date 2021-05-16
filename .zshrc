@@ -115,6 +115,7 @@ export NVM_DIR="$HOME/.nvm"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="$PATH:${HOME}/src/flutter/bin"
+# export PATH="$PATH:${HOME}/src/flutter/bin"
+export PATH="$PATH:${HOME}/development/flutter/bin"
 
 source $HOME/.bashrc
