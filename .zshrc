@@ -119,3 +119,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH="$PATH:${HOME}/development/flutter/bin"
 
 source $HOME/.bashrc
+# Makes VS Code work with Volta
+# https://github.com/volta-cli/volta/issues/665
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
