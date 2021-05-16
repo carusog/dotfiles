@@ -107,6 +107,9 @@ export EDITOR='nvim'
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
+# assign current directory as a project to the currently activated virtualenv
+alias setvenvproject="setvirtualenvproject $VIRTUAL_ENV $(pwd)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -123,3 +126,10 @@ source $HOME/.bashrc
 # https://github.com/volta-cli/volta/issues/665
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# virtualenvwrapper settings
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/development
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3 # for pip3 installation
+source /usr/local/bin/virtualenvwrapper.sh
+
