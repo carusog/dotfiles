@@ -31,13 +31,16 @@ set expandtab										" use spaces instead of tabs
 set tabstop=4 softtabstop=4 shiftwidth=4
 set smartindent
 
+" Searching
+set smartcase
+
 " Mappings
 " ------------------------------------------------------------------------------
 let mapleader = "\<space>"
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>pv :Vex<CR>
-nnoremap <C-p> :GFiles<CR> 
-nnoremap <leader>pf :Files<CR> 
-nnoremap <C-j> :cnext<CR> 
-nnoremap <C-k> :cprev<CR> 
+nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>pf :Files<CR>
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
