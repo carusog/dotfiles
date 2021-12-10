@@ -16,6 +16,7 @@ set scrolloff=8
 set number
 set relativenumber
 set nowrap
+set cursorline
 
 " Colors
 set termguicolors       " enable true colors support
