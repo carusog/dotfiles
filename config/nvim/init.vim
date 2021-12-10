@@ -25,4 +25,6 @@ set smartindent
 " Mappings
 " ------------------------------------------------------------------------------
 let mapleader = "\<space>"
+nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>pv :Vex<CR>
