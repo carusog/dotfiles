@@ -10,4 +10,10 @@
 " Avoid using standard Vim directory names like 'plugin'
 " Make sure you use single quotes
 call plug#begin(stdpath('data') . '/plugged')
+
+" FZF
+" ------------------------------------------------------------------------------
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
