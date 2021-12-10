@@ -28,3 +28,5 @@ let mapleader = "\<space>"
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>pv :Vex<CR>
+nnoremap <C-p> :GFiles<CR> 
+nnoremap <leader>pf :Files<CR> 
