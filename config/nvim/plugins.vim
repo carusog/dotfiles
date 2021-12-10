@@ -19,5 +19,6 @@ Plug 'junegunn/fzf.vim'
 " Colors
 " ------------------------------------------------------------------------------
 Plug 'ayu-theme/ayu-vim'
+Plug 'catppuccin/nvim'
 
 call plug#end()
