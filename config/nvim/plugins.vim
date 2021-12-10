@@ -16,4 +16,8 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Colors
+" ------------------------------------------------------------------------------
+Plug 'ayu-theme/ayu-vim'
+
 call plug#end()
