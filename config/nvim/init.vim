@@ -15,6 +15,8 @@ source <sfile>:h/plugins.vim
 set scrolloff=8
 set number
 set relativenumber
+set nowrap
+
 " Colors
 set termguicolors       " enable true colors support
 let ayucolor="dark"     " for dark version of theme, also 'light' and 'mirage'
