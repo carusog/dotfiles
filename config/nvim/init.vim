@@ -36,3 +36,5 @@ nnoremap <leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>pv :Vex<CR>
 nnoremap <C-p> :GFiles<CR> 
 nnoremap <leader>pf :Files<CR> 
+nnoremap <C-j> :cnext<CR> 
+nnoremap <C-k> :cprev<CR> 
