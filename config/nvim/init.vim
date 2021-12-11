@@ -11,6 +11,13 @@
 source <sfile>:h/plugins.vim
 
 " ------------------------------------------------------------------------------
+" GENERAL
+" ------------------------------------------------------------------------------
+set noswapfile      " no need to seed .swp files all around your system, 
+set autowriteall    " but let's be safe and auto save
+set autoread        " usefull when switching branch to make Vim load changes
+ 
+" ------------------------------------------------------------------------------
 " WINDOW
 " ------------------------------------------------------------------------------
 set scrolloff=8
