@@ -50,6 +50,8 @@ nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
 " Toggles foldings
 nnoremap <leader><space> za
+nnoremap <leader>o o<Esc>
+nnoremap <leader>O O<Esc>
 
 " Autocommands
 " ------------------------------------------------------------------------------
