@@ -44,6 +44,9 @@ set foldlevel=9999
 " Searching
 set smartcase
 
+" Built-in Completion
+set omnifunc=syntaxcomplete#Complete
+
 " ------------------------------------------------------------------------------
 " MAPPINGS
 " ------------------------------------------------------------------------------
