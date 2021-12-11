@@ -50,8 +50,14 @@ nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
 " Toggles foldings
 nnoremap <leader><space> za
+" Add new line without landing in isert mode
 nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
+" Switch between buffers using alt+[left|right] arrows
+nnoremap <silent><A-Right> :bn<CR>
+inoremap <silent><A-Right> <C-O>:bn<CR>
+nnoremap <silent><A-Left> :bp<CR>
+inoremap <silent><A-Left> <C-O>:bp<CR>
 
 " Autocommands
 " ------------------------------------------------------------------------------
