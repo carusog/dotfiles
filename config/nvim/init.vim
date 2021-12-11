@@ -46,3 +46,13 @@ nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
 " Toggles foldings
 nnoremap <leader><space> za
+
+" Autocommands
+" ------------------------------------------------------------------------------
+augroup filetype_settings
+autocmd!
+" Dynamically open help windows at the top 
+" if there's more than one window in current tab, 
+" or on the right, if there's only one window
+autocmd FileType help if winnr('$') > 2 | wincmd K | else | wincmd L | endif
+augroup END
