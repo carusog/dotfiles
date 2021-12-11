@@ -15,6 +15,8 @@ set number
 set relativenumber
 set nowrap
 set cursorline
+" Neovim defaults: listchars=tab:> ,trail:-,nbsp:+
+set listchars=eol:$,tab:>-,trail:•,extends:>,precedes:<,nbsp:+ 
 
 " Colors
 set termguicolors       " enable true colors support
@@ -25,7 +27,7 @@ colorscheme ayu
 
 " Indentation
 " ------------------------------------------------------------------------------
-set expandtab										" use spaces instead of tabs
+set expandtab                                       " use spaces instead of tabs
 set tabstop=4 softtabstop=4 shiftwidth=4
 set smartindent
 
