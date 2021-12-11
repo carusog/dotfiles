@@ -31,6 +31,10 @@ set expandtab                                       " use spaces instead of tabs
 set tabstop=4 softtabstop=4 shiftwidth=4
 set smartindent
 
+" Editing
+" ------------------------------------------------------------------------------
+set foldmethod=indent
+
 " Searching
 set smartcase
 
