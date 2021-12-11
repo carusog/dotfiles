@@ -16,7 +16,7 @@ set relativenumber
 set nowrap
 set cursorline
 " Neovim defaults: listchars=tab:> ,trail:-,nbsp:+
-set listchars=eol:$,tab:>-,trail:•,extends:>,precedes:<,nbsp:+ 
+set listchars=eol:$,tab:>-,trail:•,extends:>,precedes:<,nbsp:+
 
 " Colors
 set termguicolors       " enable true colors support
