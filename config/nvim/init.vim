@@ -59,6 +59,11 @@ inoremap <silent><A-Right> <C-O>:bn<CR>
 nnoremap <silent><A-Left> :bp<CR>
 inoremap <silent><A-Left> <C-O>:bp<CR>
 
+" Underline the current line with '=', '-', or '~'
+nmap <silent> <leader>u= :t.\|s/./=/g\|:nohls<cr>
+nmap <silent> <leader>u- :t.\|s/./-/g\|:nohls<cr>
+nmap <silent> <leader>u~ :t.\|s/./\~/g\|:nohls<cr>
+
 " Autocommands
 " ------------------------------------------------------------------------------
 augroup filetype_settings
