@@ -17,13 +17,13 @@ set nowrap
 set cursorline
 " Neovim defaults: listchars=tab:> ,trail:-,nbsp:+
 set listchars=eol:$,tab:>-,trail:•,extends:>,precedes:<,nbsp:+
+set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
 
 " Colors
 set termguicolors       " enable true colors support
 let ayucolor="dark"     " for dark version of theme, also 'light' and 'mirage'
 colorscheme ayu
 " colorscheme catppuccin
-
 
 " Indentation
 " ------------------------------------------------------------------------------
