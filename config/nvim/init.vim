@@ -1,10 +1,8 @@
-" My neovim settings {{{
+" My neovim settings
 " ------------------------------------------------------------------------------
 " Author: Giuseppe Caruso <peppecaruso [at] gmail [dot] com>
 " and the lovely internet folks keeping their dotfiles open to the community <3
 " Source: https://github.com/carusog/dotfiles/config/nvim/
-"
-" }}}
 
 " Plugins
 " ------------------------------------------------------------------------------
