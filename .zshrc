@@ -71,6 +71,7 @@ plugins=(
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
+  ember-cli
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -11,6 +11,10 @@
 " Make sure you use single quotes
 call plug#begin(stdpath('data') . '/plugged')
 
+" TUI
+" ------------------------------------------------------------------------------
+Plug 'ryanoasis/vim-devicons'
+
 " FZF
 " ------------------------------------------------------------------------------
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -20,5 +24,9 @@ Plug 'junegunn/fzf.vim'
 " ------------------------------------------------------------------------------
 Plug 'ayu-theme/ayu-vim'
 Plug 'catppuccin/nvim'
+
+" A NERDTree alternative written in Lua
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
