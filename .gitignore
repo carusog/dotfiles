@@ -3,3 +3,6 @@
 .DS_Store
 vim/plugged/
 .netrwhist
+coc-settings.json
+nodepath.vim
+.idea

@@ -18,9 +18,9 @@ set hidden
 set autowriteall
 
 " fix default vimrc modelines value when $VIM,
-" for some reason, in not set so system vimrc 
+" for some reason, in not set so system vimrc
 " falls back to /usr/share/vim/vimrc
-set modelines=5     
+set modelines=5
 
 " Better search with, E.G., :find [betterSearch]
 set wildmode=list:full " Shows results in a vertical list
@@ -45,21 +45,21 @@ call plug#begin('~/.vim/plugged')
 
 " Use CoC release branch (Recommended)
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"source $HOME/.vim/nodepath.vim 
+"source $HOME/.vim/nodepath.vim
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " set Rgp command to use Rg with bat preview
 command! -bang -nargs=* Rgp call fzf#vim#grep("
             \   rg --column --line-number --no-heading --color=always --smart-case
-            \ ".shellescape(<q-args>), 
+            \ ".shellescape(<q-args>),
             \ 1,
             \ fzf#vim#with_preview(),
             \ <bang>0)
 
 
 " Browsing
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   let NERDTreeShowBookmarks = 1
   let NERDTreeChDirMode = 2
@@ -67,18 +67,20 @@ Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
   let g:ctrlp_custom_ignore = 'node_modules'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'ryanoasis/vim-devicons'
+" /Browsing }}}
 
 " Colors
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'junegunn/seoul256.vim'
+Plug 'nightsense/cosmic_latte'
+" /Colors }}}
 
 " Editing
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -89,8 +91,10 @@ Plug 'junegunn/goyo.vim'
 "Plug 'ervandew/supertab'
 
 " Utilities
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'tpope/vim-unimpaired'     " Just because of `]b/[b` for next/prev buffer
+Plug 'junegunn/vim-emoji'       " Emojy in VIM
+" /Utilities }}}
 
 " Javascript
 " -----------------------------------------------------------------------------
@@ -103,6 +107,7 @@ Plug 'chr4/nginx.vim'
 " Fancier status bar
 " -----------------------------------------------------------------------------
 Plug 'itchyny/lightline.vim'
+" Lightline settings {{{
 let g:lightline = {
 \    'colorscheme': 'dracula',
 \    'active': {
@@ -117,25 +122,27 @@ function! LightLineFixIndexFiles()
     let filenameonly = expand('%:t:r')
     if filenameonly ==? "index"
         return remove(split(expand("%:h"), "/"), -1) . "/" . expand("%:t")
-    else 
+    else
         return expand("%:t")
     endif
 endfunction
+" /Lightline settings }}}
 
 " Git
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'xuyuanp/nerdtree-git-plugin'
+" /Git }}}
 
 " Languages
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 Plug 'sheerun/vim-polyglot'
 Plug 'lumiliet/vim-twig'
-Plug 'mustache/vim-mustache-handlebars' 
-" {{{
+Plug 'mustache/vim-mustache-handlebars'
+" handlebars settings {{{
 let g:mustache_abbreviations = 1
-" }}}
+" /handlebars settings }}}
+" /Languages }}}
 
 call plug#end()
 
@@ -163,6 +170,13 @@ filetype plugin indent on
 "set shortmess+=c
 "set signcolumn=yes
 
+" Use <CR> to confirm completion,
+" `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " is the Pop Up Menu open?
@@ -181,7 +195,7 @@ filetype plugin indent on
 " if popup menu is visible to to suggestion item above
 " otherwise, remove a shifwidth with i_CTRL-d
 "inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-d>"
-    
+
 "inoremap <silent><expr> <TAB>
   "\ pumvisible() ? "\<C-n>":
   "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
@@ -198,7 +212,7 @@ filetype plugin indent on
 " Use <c-space> to trigger completion.
 "inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> to confirm completion, 
+" Use <cr> to confirm completion,
 " `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
@@ -254,7 +268,7 @@ filetype plugin indent on
 "" Fix autofix problem of current line
 "nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Create mappings for function text object, 
+" Create mappings for function text object,
 " requires document symbols feature of languageserver.
 "xmap if <Plug>(coc-funcobj-i)
 "xmap af <Plug>(coc-funcobj-a)
@@ -337,14 +351,16 @@ let &t_EI = "\e[2 q"
 
 set guifont=Furacode\ Nerd\ Font:h16
 
+" -----------------------------------------------
 " Dracula theme {{{
 " -----------------------------------------------
-let g:dracula_italic = 0
-colorscheme dracula
-highlight Normal ctermbg=None
+"  let g:dracula_italic = 0
+"  colorscheme dracula
+"  highlight Normal ctermbg=None
 " Coc symbol highlight custom color
-highlight CocHighlightText ctermfg=Black ctermbg=Yellow guifg=#272936 guibg=#f3f89d
+"  highlight CocHighlightText ctermfg=Black ctermbg=Yellow guifg=#272936 guibg=#f3f89d
 " }}}
+" -----------------------------------------------
 " Nord theme {{{
 " -----------------------------------------------
 "silent! colorscheme nord
@@ -353,11 +369,28 @@ highlight CocHighlightText ctermfg=Black ctermbg=Yellow guifg=#272936 guibg=#f3f
 "let g:nord_cursor_line_number_background = 1
 "hi Search guibg=peru guifg=wheat
 " }}}
+" -----------------------------------------------
 " gruvbox theme {{{
 " -----------------------------------------------
 "silent! colorscheme gruvbox
 "let g:lightline = { 'colorscheme': 'gruvbox' }
 " }}}
+" -----------------------------------------------
+" Seoul256 {{{
+" -----------------------------------------------
+" dark:
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+let g:seoul256_background = 234
+
+" light:
+"   Range:   252 (darkest) ~ 256 (lightest)
+"   Default: 253
+let g:seoul256_light_background = 253
+
+colorscheme seoul256
+" }}}
+" -----------------------------------------------
 
 if has('gui_running')
   set macligatures
@@ -368,27 +401,48 @@ set incsearch
 
 " Better invisible characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:+
+
+" set Rgp command to use Rg with bat preview
+command! -bang -nargs=* Rgp
+    \ call fzf#vim#grep("rg
+    \ --column
+    \ --line-number
+    \ --no-heading
+    \ --color=always
+    \ --smart-case
+    \ ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+" Custom indicators for nerdtree-git-plugin {{{
+if emoji#available()
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : emoji#for('zap'),
+        \ "Staged"    : emoji#for('rocket'),
+        \ "Dirty"     : "~",
+        \ }
+endif
+" /Custom indicators }}}
 " }}}
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Toggle foldings
 noremap <space><space> za
 " hide search results highlight
-noremap <leader><space> :noh<cr> 
+noremap <leader><space> :noh<CR>
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 inoremap jj <Esc>
 inoremap JJ <Esc>
 
-nnoremap <leader><leader> :wa<cr>
+nnoremap <leader><leader> :wa<CR>
 
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
-nnoremap <leader>ntt :NERDTreeToggle<cr>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Better search (see above)
 "" Correctly set path to search in current folder recursively
-" set path=.,** 
+" set path=.,**
 " nnoremap <leader>f :find *
 " nnoremap <leader>s :sfind *
 " nnoremap <leader>v :vert sfind *
@@ -426,6 +480,10 @@ nnoremap - ddkP
 nnoremap + ddp
 " place next match in the middle of the screen
 nnoremap <silent> n nzz
+nnoremap <leader>ntt :NERDTreeToggle<cr>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :edit $MYVIMRC<CR>
+
 nnoremap <silent> N Nzz
 
 " text transformations
@@ -455,7 +513,7 @@ augroup ft_vim
     " set help pages to a width of 80 characters
     au FileType help setlocal textwidth=80
     " open help text in a window to the right of current file
-    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif 
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
     "au FileType vim inoremap <c-n> <c-x><c-n>
 augroup END
 
