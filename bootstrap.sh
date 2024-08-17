@@ -38,8 +38,8 @@ ensure_link "vim/vimrc" ".vimrc"
 # zsh
 # ===============================================
 echo "Check for .zshrc existence. Eventually move to bkp folder"
-test ! -f ${HOME}/.zshrc ||
+test ! -f "${HOME}"/.zshrc ||
   echo "Found a .zshrc file. I am moving it to back up folder" &&
-  mv ${HOME}/.zshrc ${HOME}/.dotfiles_bkp/
+  mv "${HOME}"/.zshrc "${HOME}"/.dotfiles_bkp/
 
 ensure_link ".zshrc" ".zshrc"
