@@ -3,19 +3,19 @@
 # BE CAREFUL, DAMMIT™
 #
 # shamelessly ripped off from @SJL dotfiles
-# https://bitbucket.org/sjl/dotfiles/src/default/bin/bootstrap.sh 
+# https://bitbucket.org/sjl/dotfiles/src/default/bin/bootstrap.sh
 
 set -e
 # uncomment for debugging
 set -x
 
 # tests if a symlink to your conf file is already in place otherwise,
-# it will create it, only if availabe in dotfiles
+# it will create it, only if available in dotfiles
 function ensure_link {
-    # test for symlink (-L), the for the existence of a file or directory (-e)
-    # finally, create symlink to files or folder at this folder location
-    echo "checking or creating ${2}"
-    test -L "${HOME}/$2" || test -e "${HOME}/$2" || ln -s "$(pwd)/$1" "${HOME}/$2"
+  # test for symlink (-L), the for the existence of a file or directory (-e)
+  # finally, create symlink to files or folder at this folder location
+  echo "checking or creating ${2}"
+  test -L "${HOME}/$2" || test -e "${HOME}/$2" || ln -s "$(pwd)/$1" "${HOME}/$2"
 }
 
 # ===============================================
@@ -23,10 +23,13 @@ function ensure_link {
 # ===============================================
 echo "Check for .vim existence. Eventually move to bkp before moving vim to .vim"
 # TODO: Make this a function to be used inside `ensure_link` for all files/folders
-test ! -d ${HOME}/.vim || \
-    echo "${$?}: I've found an existing .vim folder, setting up bkp" && \
-    mkdir -p ${HOME}/.dotfiles_bkp && \
-    mv ${HOME}/.vim $_
+test ! -d "${HOME}"/.vim
+exit_code=$?
+if [ $exit_code -ne 0 ]; then
+  echo "${exit_code}: I've found an existing .vim folder, setting up bkp"
+  mkdir -p "${HOME}"/.dotfiles_bkp
+  mv "${HOME}"/.vim "$_"
+fi
 
 ensure_link "vim" ".vim"
 ensure_link "vim/vimrc" ".vimrc"
@@ -34,9 +37,9 @@ ensure_link "vim/vimrc" ".vimrc"
 # ===============================================
 # zsh
 # ===============================================
-echo "Check for .zshrc existence. Eventually move to bkp folder" 
-test ! -f ${HOME}/.zshrc || \
-    echo "Found a .zshrc file. I am moving it to back up folder" && \
-    mv ${HOME}/.zshrc ${HOME}/.dotfiles_bkp/
+echo "Check for .zshrc existence. Eventually move to bkp folder"
+test ! -f ${HOME}/.zshrc ||
+  echo "Found a .zshrc file. I am moving it to back up folder" &&
+  mv ${HOME}/.zshrc ${HOME}/.dotfiles_bkp/
 
 ensure_link ".zshrc" ".zshrc"
