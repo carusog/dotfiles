@@ -1,3 +1,11 @@
+# .zshrc ------------------------------------------------------------------- {{{
+#
+# Author: Giuseppe Caruso <peppecaruso[at]gmail[dot]com>
+# Source: https://github.com/carusog/dotfiles
+#
+# }}}
+# General configuration ---------------------------------------------------- {{{
+
 source "$HOME/.profile"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -65,11 +73,15 @@ export ZSH="$HOME/.oh-my-zsh"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# }}}
+# Plugins ------------------------------------------------------------------ {{{
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
   git
   z 
@@ -79,9 +91,13 @@ plugins=(
   asdf
 )
 
+# }}}
+# Source the main oh-my-zsh script ----------------------------------------- {{{
+
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# }}}
+# User configuration ------------------------------------------------------- {{{
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -108,32 +124,51 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# }}}
+# Aliases ------------------------------------------------------------------ {{{
+
 source ~/.aliases
 
-# Vodafone
+# }}}
+# Vodafone ----------------------------------------------------------------- {{{
+
 ## Set the passphrase to access Network Health app's vault
 export NH_VAULT_PASSPHRASE='bDzmeHGrDhNc7PZg6Fp7zBYf'
 
-## Volta
+# }}}
+# Volta -------------------------------------------------------------------- {{{
+
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-## Flutter path
+# }}}
+# Flutter ------------------------------------------------------------------ {{{
+
 export PATH="$PATH:$HOME/Development/tools/flutter/bin"
 
-# Doom Emacs
+# }}}
+# Doom Emacs --------------------------------------------------------------- {{{
+
 export PATH="$HOME/doom-emacs/bin:$PATH"
 
-# bun completions
+# }}}
+# Bun ---------------------------------------------------------------------- {{{
+
+# add completions
 [ -s "/Users/giuseppe/.bun/_bun" ] && source "/Users/giuseppe/.bun/_bun"
 
-# Starshipt init
+# }}}
+# Starshipt init ----------------------------------------------------------- {{{
 # https://github.com/starship/starship#step-2-set-up-your-shell-to-use-starship
+
 eval "$(starship init zsh)"
 
-# Neovim Switcher
+# }}}
+# Neovim Switcher ---------------------------------------------------------- {{{
+
 # Courteusly from https://gist.github.com/elijahmanor/b279553c0132bfad7eae23e34ceb593b
 # Forked at https://gist.github.com/carusog/9a645ee5590c510efd3467b91acc4ef8
+
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
@@ -153,61 +188,70 @@ function nvims() {
 
 bindkey -s ^a "nvims\n"
 
+# }}}
+# Zsh Syntax Highlighting -------------------------------------------------- {{{
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# ==============================================================================
-# Python set up
-# ==============================================================================
+# }}}
+# Python set up ------------------------------------------------------------ {{{
 
 # Pyenv set up
 # Source: https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv:~:text=For-,Zsh,-%3A
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# --------------------
-# asdf version manager 
-# --------------------
-. "$HOME/.asdf/asdf.sh" # (didn't work and I switched to chruby)
-
-
-# ==============================================================================
-# Ruby set up
-# ==============================================================================
+# }}}
+# Ruby set up -------------------------------------------------------------- {{{
 
 # enable chruby (Ruby version manager)
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-# automatically switch the current version of Ruby 
-# when you change directories if a hidden file indicates 
-# a specific Ruby version
+
+# automatically switch the current version of Ruby when you change directories 
+# if a hidden file indicates a specific Ruby version
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+
 # makes Ruby version 3.3.0 the default Ruby in the terminal
 chruby ruby-3.3.0
 
-
-# Herd injected PHP binary.
-export PATH="/Users/giuseppe/Library/Application Support/Herd/bin/":$PATH
-
-
-# Herd injected PHP 8.2 configuration.
-export HERD_PHP_82_INI_SCAN_DIR="/Users/giuseppe/Library/Application Support/Herd/config/php/82/"
-
+# }}}
+# Herd --------------------------------------------------------------------- {{{
 
 # Herd injected NVM configuration
 # export NVM_DIR="/Users/giuseppe/Library/Application Support/Herd/config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
+# [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
+
+# Herd injected PHP binary.
+export PATH="/Users/giuseppe/Library/Application Support/Herd/bin/":$PATH
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/giuseppe/Library/Application Support/Herd/config/php/82/"
 
 # Herd injected PHP 8.3 configuration.
 export HERD_PHP_83_INI_SCAN_DIR="/Users/giuseppe/Library/Application Support/Herd/config/php/83/"
 
-# Taskwarrior custom config file locations
+# }}}
+# Taskwarrior -------------------------------------------------------------- {{{
+
+# custom config file locations
 # export TASKRC=~/.config/task/.taskrc
 # export TASKDATA=~/.config/task/.task task list
+
+# }}}
+# FZF ---------------------------------------------------------------------- {{{
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
 # Open in tmux popup if on tmux, otherwise use --height mode
 export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# }}}
+
+# vim: ft=vim:foldmethod=marker:foldlevel=0
