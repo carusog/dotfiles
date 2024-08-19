@@ -1,0 +1,7 @@
+alias dotfiles="cd ~/Development/github.com/carusog/dotfiles/ && nvim ."
+alias dots="cd ~/Development/github.com/carusog/dotfiles/ && nvim ."
+alias zshconfig="cd ~/.zshrc && nvim ."
+alias ohmyzsh="cd ~/.oh-my-zsh/custom/ && nvim ."
+alias sz="source ~/.zshrc"
+
+alias lg='lazygit'
