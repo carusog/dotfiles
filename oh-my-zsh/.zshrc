@@ -71,7 +71,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM="$HOME/Development/github.com/carusog/dotfiles/oh-my-zsh/.oh-my-zsh/custom"
 
 # }}}
 # Plugins ------------------------------------------------------------------ {{{
