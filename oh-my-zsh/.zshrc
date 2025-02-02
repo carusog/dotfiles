@@ -1,3 +1,4 @@
+# vim: foldmethod=marker:foldlevel=0
 # .zshrc ------------------------------------------------------------------- {{{
 #
 # Author: Giuseppe Caruso <peppecaruso[at]gmail[dot]com>
@@ -253,5 +254,32 @@ export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --borde
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
+# AWS CLI ------------------------------------------------------------------ {{{
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-metadata.html
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quick-config.html
+#
+# Let the system know that your sensitive information is residing in the .aws folder
+export AWS_CONFIG_FILE=~/.aws/config
+export AWS_SHARED_CREDENTIALS_FILE=~/.aws/credentials
+# }}}
+# Netlify CLI -------------------------------------------------------------- {{{
 
-# vim: ft=vim:foldmethod=marker:foldlevel=0
+# }}}
+# UV (Python package manager) ---------------------------------------------- {{{
+
+eval "$(uv --generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+
+# }}}
+# Deno --------------------------------------------------------------------- {{{
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
+. "/Users/giuseppe/.deno/env"
+
+# }}}
