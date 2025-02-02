@@ -106,7 +106,6 @@ Plug 'chr4/nginx.vim'
 Plug 'itchyny/lightline.vim'
 
 "" }}}
-
 "" Lightline settings ----------------------------------------------------- {{{
 
 let g:lightline = {
@@ -449,9 +448,13 @@ nnoremap <silent> ≠ <C-w>=
 nnoremap <silent> ß :split<CR>
 nnoremap <silent> √ :vsplit<CR>
 " Maps arrow keys for moving between windows
+" Go to the left split: ald+h (˙)
 nnoremap <silent> ˙ <C-w><C-h>
+" Go to the bottom split: ald+j (∆)
 nnoremap <silent> ∆ <C-w><C-j>
+" Go to the top split: ald+k (˚)
 nnoremap <silent> ˚ <C-w><C-k>
+" Go to the right: ald+l (¬)
 nnoremap <silent> ¬ <C-w><C-l>
 " Maps Alt-[n,p] for moving next and previous window respectively
 nnoremap <silent> ‘ <C-w><C-w>
