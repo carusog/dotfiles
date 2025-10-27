@@ -205,7 +205,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # }}}
-# Ruby set up -------------------------------------------------------------- {{{
+# 💎 Ruby set up ----------------------------------------------------------- {{{
 
 # enable chruby (Ruby version manager)
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
@@ -270,16 +270,24 @@ export AWS_SHARED_CREDENTIALS_FILE=~/.aws/credentials
 # Netlify CLI -------------------------------------------------------------- {{{
 
 # }}}
-# UV (Python package manager) ---------------------------------------------- {{{
+# 🐍 UV (Python package manager) ------------------------------------------- {{{
 
 eval "$(uv --generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 
 # }}}
-# Deno --------------------------------------------------------------------- {{{
+# 🦕 Deno ------------------------------------------------------------------ {{{
 
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 . "/Users/giuseppe/.deno/env"
 
+# }}}
+# 🐃 Doom Emacs ------------------------------------------------------------ {{{
+
+PATH="$HOME/.config/emacs-doom/bin:$PATH"
+
+# }}}
+# 🏄‍♂️ Windsurf -------------------------------------------------------------- {{{
+export PATH="/Users/giuseppe/.codeium/windsurf/bin:$PATH"
 # }}}
