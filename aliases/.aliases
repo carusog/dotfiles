@@ -5,3 +5,6 @@ alias ohmyzsh="cd ~/.oh-my-zsh/custom/ && nvim ."
 alias sz="source ~/.zshrc"
 
 alias lg='lazygit'
+
+# better path printing
+alias ppp="tr ':' '\n' <<< "$PATH""
