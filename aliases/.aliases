@@ -8,3 +8,7 @@ alias lg='lazygit'
 
 # better path printing
 alias ppp="tr ':' '\n' <<< "$PATH""
+
+# Unaliasing g cause g-ls conflicts with it,
+# and typing `git` is not a big issue, isn't it? 
+unalias g
