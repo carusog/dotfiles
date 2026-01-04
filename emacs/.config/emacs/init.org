@@ -1,0 +1,414 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Giuseppe Caruso
+#+EMAIL: peppecaruso@gmail.com
+#+language: en
+#+options: ':t toc:nil num:t author:t email:t
+#+property: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
+#+startup: hidestars content indent
+#+macro: latest-export-date (eval (format-time-string "%F XT %z"))
+#+macro: word-count (eval (count-words (point-min) (point-max)))
+
+* Introduction
+
+This is my Emacs configuration, written in a literate style using Org-mode.
+Each section contains explanatory text and the actual Elisp code in source
+blocks, so the configuration remains documented and easy to maintain.
+
+To "tangle" (compile) it, use =C-x C-v t=
+
+*Last revised and exported on {{{latest-export-date}}} with a word
+count of {{{word-count}}}.*
+
+* The Performance "Hack"
+
+By raising the Garbage Collection threshold, Emacs doesn't stop to clean up memory while it is trying to load my packages.
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+
+  ;; Speed up startup by temporarily increasing garbage collector threshold
+  (setq gc-cons-threshold most-positive-fixnum)
+
+  ;; Lower it back to a reasonable level after startup
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (setq gc-cons-threshold (* 2 1024 1024))))
+
+#+end_src
+
+* Personal Information
+
+This sets my name and email for Emacs features that use them.
+
+#+begin_src emacs-lisp
+
+  (setq user-full-name "Giuseppe Caruso"
+        user-mail-address "peppecaruso@gmail.com")
+
+#+end_src
+
+* Custom File
+
+Keep customization variables in a separate file to avoid cluttering =init.org=.
+
+#+begin_src emacs-lisp
+
+  (setq custom-file (locate-user-emacs-file "custom.el"))
+  (load custom-file :no-error-if-file-is-missing)
+
+#+end_src
+
+* Package Management
+
+Set up the package manager and ensure =use-package= is available.
+
+#+begin_src emacs-lisp
+
+  (require 'package)
+
+  ;; In Emacs 27+, this is called automatically after early-init.el but before init.el.
+  ;; Commented this line to save a few milliseconds.
+  ;; (package-initialize)
+
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+  (when (< emacs-major-version 29)
+    (unless (package-installed-p 'use-package)
+      (unless package-archive-contents
+        (package-refresh-contents))
+      (package-install 'use-package)))
+  (require 'use-package)
+
+#+end_src
+
+* Suppress Noisy Buffers
+
+Prevent =*Warnings*= and =*Compile-Log*= from stealing focus.
+
+#+begin_src emacs-lisp
+
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
+                 (display-buffer-no-window)
+                 (allow-no-window . t)))
+
+#+end_src
+
+* Fonts
+
+Configure monospace and proportional fonts.
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+
+;; proportionately-spaced-font "Noto Sans Display"
+(let ((mono-spaced-font "JetBrainsMono Nerd Font Mono")
+        (proportionately-spaced-font "ETBembo"))
+
+    (set-face-attribute 'default nil :family mono-spaced-font :height 160)
+    ;; Ensure fixed-pitch inherits the correct family and height from default
+    (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
+    (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
+
+  ;; How to "properly" set line height in Emacs
+  ;; Source: https://github.com/syl20bnr/spacemacs/issues/10502#issuecomment-404453194
+  (defun set-bigger-spacing ()
+    (setq-local default-text-properties '(line-spacing 0.25 line-height 1.25)))
+
+  (add-hook 'text-mode-hook 'set-bigger-spacing)
+  (add-hook 'prog-mode-hook 'set-bigger-spacing)
+
+#+end_src
+
+* Mode Line
+
+Enable a modern mode line and basic information displays.
+
+#+begin_src emacs-lisp
+
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+
+  (line-number-mode t)
+  (column-number-mode t)
+  (size-indication-mode t)
+  
+#+end_src
+
+* Theme
+
+Load the =modus-vivendi-tinted= theme and disable others.
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+
+  ;; Load the theme immediately so the frame is colored correctly on startup
+  ;; Modus-themes are built-in, so we don't need use-package here.
+  (setq modus-themes-disabled-other-themes t)
+  (load-theme 'modus-operandi-tinted :no-confirm-loading)
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+  ;; (use-package modus-themes
+  ;;   :ensure t)
+
+#+end_src
+
+* UI
+
+Prevent the flashy menu-bar and tool-bar from even loading.
+
+#+begin_src emacs-lisp :tangle ./early-init.el
+
+  ;; Prevent the flashy menu-bar and tool-bar from even loading
+  (push '(menu-bar-lines . 0) default-frame-alist)
+  (push '(tool-bar-lines . 0) default-frame-alist)
+  (push '(vertical-scroll-bars) default-frame-alist)
+
+#+end_src
+
+Add nice paddings around the window.
+
+#+begin_src emacs-lisp
+
+  (use-package spacious-padding
+    :ensure t
+    :init (spacious-padding-mode 1))
+  
+  ;; Highlight current line
+  ;; (global-hl-line-mode +1)
+
+#+end_src
+
+* Basic Behavior
+
+Delete selection on typing (delsel) and improve =C-g= behavior.
+
+#+begin_src emacs-lisp
+
+  (use-package delsel
+    :ensure nil
+    :hook (after-init . delete-selection-mode))
+
+  (defun prot/keyboard-quit-dwim ()
+    "Do-What-I-Mean behavior for `keyboard-quit`."
+    (interactive)
+    (cond
+     ((region-active-p)
+      (keyboard-quit))
+     ((derived-mode-p 'completion-list-mode)
+      (delete-completion-window))
+     ((> (minibuffer-depth) 0)
+      (abort-recursive-edit))
+     (t
+      (keyboard-quit))))
+
+  (define-key global-map (kbd "C-g") #'prot/keyboard-quit-dwim)
+
+#+end_src
+
+Suppress the default splash screen
+
+You can make words *bold*, /italic/, _underlined_, =code= and ~verbatim~, and, if you must, +strike-through+.
+
+#+begin_src emacs-lisp
+
+;; Disable the splash screen (to enable it agin, replace the t with 0)
+(setq inhibit-splash-screen t)
+
+#+end_src
+
+* Nerd Icons
+
+Pretty icons for the mode line, completions, and Dired.
+
+#+begin_src emacs-lisp
+
+  (use-package nerd-icons
+    :ensure t)
+
+  (use-package nerd-icons-completion
+    :ensure t
+    :after marginalia
+    :config
+    (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+  (use-package nerd-icons-corfu
+    :ensure t
+    :after corfu
+    :config
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+  (use-package nerd-icons-dired
+    :ensure t
+    :hook (dired-mode . nerd-icons-dired-mode))
+
+#+end_src
+
+* Minibuffer and Completion
+
+Vertico, Marginalia, Orderless, Savehist, and Corfu setup.
+
+#+begin_src emacs-lisp
+
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
+
+(use-package marginalia
+  :ensure t
+  :hook (after-init . marginalia-mode))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic))
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil))
+
+(use-package savehist
+  :ensure nil
+  :hook (after-init . savehist-mode))
+
+(use-package corfu
+  :ensure t
+  :hook (after-init . global-corfu-mode)
+  :bind (:map corfu-map ("<tab>" . corfu-complete))
+  :config
+  (setq tab-always-indent 'complete
+        corfu-preview-current nil
+        corfu-min-width 20
+        corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-mode 1)
+  (with-eval-after-load 'savehist
+    (corfu-history-mode 1)
+    (add-to-list 'savehist-additional-variables 'corfu-history)))
+
+#+end_src
+
+* File Management with Dired
+
+Dired enhancements, subtree toggling, and trash management.
+
+#+begin_src emacs-lisp
+
+  (use-package dired
+    :ensure nil
+    :hook
+    ((dired-mode . dired-hide-details-mode)
+     (dired-mode . hl-line-mode))
+    :config
+    (setq dired-recursive-copies 'always
+          dired-recursive-deletes 'always
+          delete-by-moving-to-trash t
+          dired-dwim-target t))
+
+  (use-package dired-subtree
+    :ensure t
+    :after dired
+    :bind (:map dired-mode-map
+                ("<tab>" . dired-subtree-toggle)
+                ("TAB" . dired-subtree-toggle)
+                ("<backtab>" . dired-subtree-remove)
+                ("S-TAB" . dired-subtree-remove))
+    :config
+    (setq dired-subtree-use-backgrounds nil))
+
+  (use-package trashed
+    :ensure t
+    :commands (trashed)
+    :config
+    (setq trashed-action-confirmer 'y-or-n-p
+          trashed-use-header-line t
+          trashed-sort-key '("Date deleted" . t)
+          trashed-date-format "%Y-%m-%d %H:%M:%S"))
+  
+#+end_src
+
+* Editing Enhancements
+
+Smartparens, expand-region, and transient mark mode.
+
+#+begin_src emacs-lisp
+
+  (use-package smartparens
+    :ensure t
+    :diminish smartparens-mode
+    :config
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)
+    (show-paren-mode t))
+
+  (use-package expand-region
+    :ensure t
+    ;; expand "meta + m", contract "meta + shift + m"
+    :bind (("M-m" . er/expand-region) ("M-M" . er/contract-region)))
+
+  (transient-mark-mode 1)
+
+#+end_src
+
+* Org Mode
+
+Basic Org mode setup.
+
+The main /sources of inspiration/:
+
+- [[https://www.howardism.org/Technical/Emacs/orgmode-wordprocessor.html][Org as a Word Processor]]
+- [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][Beautifying Org Mode in Emacs]]
+
+#+begin_src emacs-lisp
+
+(use-package org
+  ;; :hook
+  ;; ((org-mode . variable-pitch-mode))
+
+  :bind
+  ("C-c a" . org-agenda)
+  ("C-c c" . org-capture)
+  ("C-c l" . org-store-link)
+
+  :config
+  ;; Basic Org settings
+  (setq org-hide-leading-stars t
+	org-hide-emphasis-markers t
+	org-ellipsis " ⇥ "
+        org-hide-block-startup t)
+
+  ;; Remove the initial two-spaces indentation inside code block
+  (setq org-edit-src-content-indentation 0)
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "SDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANC(c)")))
+)	    				     
+
+;; Set Org-mode default folder
+(setq org-directory "~/Documents/org/"
+      org-agenda-file "~/Documents/org/")
+
+#+end_src
+
+** Org Superstar
+
+#+begin_src emacs-lisp
+
+  ;; (use-package org-superstar
+  ;;   :ensure t
+  ;;   :hook (org-mode . org-superstar-mode)
+  ;;   :config
+  ;;   (setq org-superstar-special-todo-items t)
+  ;;   (setq org-superstar-headline-bullets-list
+  ;;         '("✿" "❀" "✺ " "✹ " "✸ " "✷ " "✶ " "✵")))
+  
+#+end_src
+
+* Custom Key Bindings
+
+Remember mode binding.
+
+#+begin_src emacs-lisp
+
+  (global-set-key (kbd "C-c r") 'remember)
+  
+#+end_src
+
+
+
