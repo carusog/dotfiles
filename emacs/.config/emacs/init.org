@@ -17,7 +17,16 @@ blocks, so the configuration remains documented and easy to maintain.
 To "tangle" (compile) it, use =C-x C-v t=
 
 *Last revised and exported on {{{latest-export-date}}} with a word
-count of {{{word-count}}}.*
+count of {{{word-count}}}.
+
+** Known bugs
+
+On Mac, when using [[https://github.com/d12frosted/homebrew-emacs-plus/issues/554][homebrew-emacs-plus]] I encountered a bug,
+right after installing Magit, where, trying to run any Magit's command,
+I received an error about /"some missing libraries[fn:1]"/.
+Apparently, it looks like [[https://github.com/d12frosted/homebrew-emacs-plus/issues/554][Native comp doesn't work]].
+To fix it, I *simply ran Emacs in the terminal* with =emacs -nw=
+as suggested in the OP comment.
 
 * The Performance "Hack"
 
@@ -456,5 +465,7 @@ Remember mode binding.
 
 #+end_src
 
+* Footnotes
 
-
+[fn:1] Just to simplify, but, more precisely, it was related to
+=library 'emutls_w' not found=, =gcc=, and =libgccjit= libraries not in the path.
