@@ -13,11 +13,7 @@
      "77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
      default))
  '(org-agenda-files '("~/Documents/org/todo.org"))
- '(package-selected-packages
-   '(corfu dired-subtree doom-modeline expand-region marginalia
-	   modus-themes nerd-icons-completion nerd-icons-corfu
-	   nerd-icons-dired orderless org org-indent org-superstar
-	   smartparens spacious-padding trashed vertico)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

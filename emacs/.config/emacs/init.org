@@ -346,6 +346,24 @@ Dired enhancements, subtree toggling, and trash management.
 
 #+end_src
 
+* Version Control
+
+Magit is a Git interface for Emacs.
+It provides a modern, interactive, and extensible interface for Git.
+
+#+begin_src emacs-lisp
+
+  (use-package magit
+    :ensure t
+    :bind ("C-x g" . magit-status)
+    ;; Defer loading until one of these commands is called
+    :commands (magit-status magit-get-current-branch)
+    :custom
+    ;; Open Magit in the current window (like a full screen app) rather than splitting
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+#+end_src
+
 * Editing Enhancements
 
 Smartparens, expand-region, and transient mark mode.

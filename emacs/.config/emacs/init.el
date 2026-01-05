@@ -158,6 +158,15 @@
         trashed-sort-key '("Date deleted" . t)
         trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status)
+  ;; Defer loading until one of these commands is called
+  :commands (magit-status magit-get-current-branch)
+  :custom
+  ;; Open Magit in the current window (like a full screen app) rather than splitting
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
