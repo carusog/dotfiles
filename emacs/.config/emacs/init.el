@@ -160,9 +160,16 @@
 
 (use-package magit
   :ensure t
-  :bind ("C-x g" . magit-status)
+  :bind
+  (("C-x g" . magit-status)
+   ("C-c g s" . magit-status)
+   ("C-c g d" . magit-dispatch)
+   ("C-c g f" . magit-file-dispatch)
+   ("C-c g b" . magit-blame))
   ;; Defer loading until one of these commands is called
   :commands (magit-status magit-get-current-branch)
+  :config
+  (which-key-add-key-based-replacements "C-c g" "Git")
   :custom
   ;; Open Magit in the current window (like a full screen app) rather than splitting
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
