@@ -64,6 +64,17 @@
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
 
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  :config
+  ;; idle-delay: How long to wait before showing the popup (default is 1.0)
+  (setq which-key-idle-delay 0.5)
+
+  (setq which-key-popup-type 'side-window
+        which-key-side-window-max-height 0.333))
+
 (use-package nerd-icons
   :ensure t)
 
@@ -181,7 +192,7 @@
   ;; Remove the initial two-spaces indentation inside code block
   (setq org-edit-src-content-indentation 0)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "SDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANC(c)")))
-)	    				     
+)
 
 ;; Set Org-mode default folder
 (setq org-directory "~/Documents/org/"

@@ -131,7 +131,7 @@ Enable a modern mode line and basic information displays.
   (line-number-mode t)
   (column-number-mode t)
   (size-indication-mode t)
-  
+
 #+end_src
 
 * Theme
@@ -174,7 +174,7 @@ Add nice paddings around the window.
   (use-package spacious-padding
     :ensure t
     :init (spacious-padding-mode 1))
-  
+
   ;; Highlight current line
   ;; (global-hl-line-mode +1)
 
@@ -215,6 +215,27 @@ You can make words *bold*, /italic/, _underlined_, =code= and ~verbatim~, and, i
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
+
+#+end_src
+
+* Keybinding Discovery
+
+Which-key is a helper utility for Emacs keybindings. It displays the available keybindings following your currently entered incomplete command (a prefix) in a popup.
+
+This is a great tool for learning Emacs keybindings and discovering new commands.
+
+#+begin_src emacs-lisp
+
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  :config
+  ;; idle-delay: How long to wait before showing the popup (default is 1.0)
+  (setq which-key-idle-delay 0.5)
+
+  (setq which-key-popup-type 'side-window
+        which-key-side-window-max-height 0.333))
 
 #+end_src
 
@@ -322,7 +343,7 @@ Dired enhancements, subtree toggling, and trash management.
           trashed-use-header-line t
           trashed-sort-key '("Date deleted" . t)
           trashed-date-format "%Y-%m-%d %H:%M:%S"))
-  
+
 #+end_src
 
 * Editing Enhancements
@@ -378,7 +399,7 @@ The main /sources of inspiration/:
   ;; Remove the initial two-spaces indentation inside code block
   (setq org-edit-src-content-indentation 0)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "SDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANC(c)")))
-)	    				     
+)
 
 ;; Set Org-mode default folder
 (setq org-directory "~/Documents/org/"
@@ -397,7 +418,7 @@ The main /sources of inspiration/:
   ;;   (setq org-superstar-special-todo-items t)
   ;;   (setq org-superstar-headline-bullets-list
   ;;         '("✿" "❀" "✺ " "✹ " "✸ " "✷ " "✶ " "✵")))
-  
+
 #+end_src
 
 * Custom Key Bindings
@@ -407,7 +428,7 @@ Remember mode binding.
 #+begin_src emacs-lisp
 
   (global-set-key (kbd "C-c r") 'remember)
-  
+
 #+end_src
 
 
