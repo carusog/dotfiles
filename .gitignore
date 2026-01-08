@@ -33,3 +33,21 @@ venv
 node_modules
 .sass-cache
 
+# Emacs
+elpa/
+*.elc
+.org-id-locations
+*_archive
+ac-comphist.dat
+auto-save-list/
+eln-cache/
+eshell/
+multisession/
+network-security.data
+request/
+timestamps/
+transient/
+tree-sitter/
+url/
+
+
