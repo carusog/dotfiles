@@ -4,7 +4,7 @@
 ;; Lower it back to a reasonable level after startup
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold (* 2 1024 1024))))
+            (setq gc-cons-threshold (* 64 1024 1024))))
 
 ;; proportionately-spaced-font "Noto Sans Display"
 (let ((mono-spaced-font "JetBrainsMono Nerd Font Mono")

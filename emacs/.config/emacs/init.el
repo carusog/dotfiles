@@ -19,6 +19,11 @@
     (package-install 'use-package)))
 (require 'use-package)
 
+(use-package gcmh
+  :ensure t
+  :config
+  (gcmh-mode 1))
+
 (add-to-list 'display-buffer-alist
              '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
                (display-buffer-no-window)
@@ -63,6 +68,14 @@
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
+
+(use-package helpful
+  :ensure t
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key] . helpful-key))
 
 (use-package which-key
   :ensure t
@@ -127,6 +140,202 @@
     (corfu-history-mode 1)
     (add-to-list 'savehist-additional-variables 'corfu-history)))
 
+(use-package cape
+  :ensure t
+  :after corfu
+  :init
+  ;; Add completion sources to completion-at-point-functions
+  ;; Order matters: cape functions complement LSP completion
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
+
+(use-package tempel
+  :ensure t
+  :bind (("M-+" . tempel-complete)  ; Complete snippet at point
+         ("M-*" . tempel-insert)     ; Insert snippet interactively
+         :map tempel-map
+         ("TAB" . tempel-next)       ; Navigate to next field
+         ("<tab>" . tempel-next)
+         ("S-TAB" . tempel-previous) ; Navigate to previous field
+         ("<backtab>" . tempel-previous))
+  :init
+  ;; Set path to snippet templates
+  (setq tempel-path (locate-user-emacs-file "templates"))
+
+  ;; Setup completion at point integration
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand
+                      completion-at-point-functions)))
+
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+
+  ;; Optionally make tempel-expand a cape capf
+  (with-eval-after-load 'cape
+    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+    (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)))
+
+(use-package consult
+  :ensure t
+  :bind (("C-s" . consult-line)           ; Better in-buffer search
+         ("C-x b" . consult-buffer)       ; Better buffer switching
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x r b" . consult-bookmark)
+         ("M-g g" . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)
+         ("M-g i" . consult-imenu)        ; Jump to function/class
+         ("M-s r" . consult-ripgrep))     ; Project-wide search
+  :config
+  ;; Enable preview for most commands
+  (setq consult-preview-key 'any)
+  ;; Add debounce to ripgrep/grep/buffer for better performance
+  (consult-customize
+   consult-ripgrep consult-grep consult-buffer
+   :preview-key '(:debounce 0.4 any)))
+
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)  ; Prompt before installing grammars
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)  ; Use tree-sitter modes when available
+  (global-treesit-auto-mode))  ; Enable globally
+
+(use-package eglot
+  :ensure t
+  :defer t
+  :hook
+  ;; Auto-start eglot in supported language modes
+  ((typescript-ts-mode . eglot-ensure)
+   (tsx-ts-mode . eglot-ensure)
+   (js-ts-mode . eglot-ensure)
+   (web-mode . eglot-ensure)
+   (css-ts-mode . eglot-ensure)
+   (go-ts-mode . eglot-ensure)
+   (clojure-mode . eglot-ensure))
+  :bind (:map eglot-mode-map
+              ("C-c l a" . eglot-code-actions)
+              ("C-c l r" . eglot-rename)
+              ("C-c l f" . eglot-format-buffer)
+              ("C-c l o" . eglot-code-action-organize-imports)
+              ("C-c l d" . eldoc-doc-buffer))
+  :config
+  ;; Performance tuning
+  (setq eglot-events-buffer-size 0  ; Disable event logging for performance
+        eglot-sync-connect nil        ; Don't block on connection
+        eglot-autoshutdown t)         ; Shutdown server when last buffer is killed
+
+  ;; Show more documentation in eldoc
+  (setq eldoc-echo-area-use-multiline-p 3)
+
+  ;; Configure server programs for languages
+  (add-to-list 'eglot-server-programs
+               '((tsx-ts-mode typescript-ts-mode) . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '(web-mode . ("vue-language-server" "--stdio")))
+
+  ;; Add which-key integration for LSP commands
+  (with-eval-after-load 'which-key
+    (which-key-add-key-based-replacements "C-c l" "LSP"))
+
+  ;; Format buffer on save (Prettier via LSP)
+  (defun eglot-format-buffer-on-save ()
+    "Format buffer with eglot before saving."
+    (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+
+  ;; Enable format-on-save for web languages
+  (add-hook 'typescript-ts-mode-hook #'eglot-format-buffer-on-save)
+  (add-hook 'tsx-ts-mode-hook #'eglot-format-buffer-on-save)
+  (add-hook 'js-ts-mode-hook #'eglot-format-buffer-on-save)
+  (add-hook 'css-ts-mode-hook #'eglot-format-buffer-on-save)
+  (add-hook 'web-mode-hook #'eglot-format-buffer-on-save))
+
+(use-package apheleia
+  :ensure t
+  :config
+  (apheleia-global-mode +1))
+
+;; TypeScript/JavaScript with tree-sitter (built-in Emacs 29+)
+(use-package typescript-ts-mode
+  :ensure nil  ; Built-in
+  :config
+  (setq typescript-ts-mode-indent-offset 2))
+
+(use-package js-ts-mode
+  :ensure nil  ; Built-in
+  :config
+  (setq js-indent-level 2))
+
+;; CSS with tree-sitter
+(use-package css-ts-mode
+  :ensure nil  ; Built-in
+  :config
+  (setq css-indent-offset 2))
+
+;; Go with tree-sitter
+(use-package go-ts-mode
+  :ensure nil  ; Built-in
+  :config
+  (setq go-ts-mode-indent-offset 4))
+
+;; Web-mode for JSX, Vue, and Svelte
+(use-package web-mode
+  :ensure t
+  :mode (("\\.jsx\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)
+         ("\\.svelte\\'" . web-mode))
+  :config
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-enable-auto-pairing t
+        web-mode-enable-css-colorization t))
+
+;; JSON mode
+(use-package json-mode
+  :ensure t
+  :mode "\\.json\\'")
+
+;; YAML mode
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.ya?ml\\'")
+
+;; Markdown mode
+(use-package markdown-mode
+  :ensure t
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :config
+  (setq markdown-command "multimarkdown"))
+
+;; Clojure mode
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.cljs\\'" . clojure-mode)
+         ("\\.cljc\\'" . clojure-mode)))
+
+(use-package emmet-mode
+  :ensure t
+  :hook ((web-mode . emmet-mode)
+         (tsx-ts-mode . emmet-mode)
+         (html-mode . emmet-mode)
+         (css-mode . emmet-mode)
+         (css-ts-mode . emmet-mode))
+  :config
+  ;; Move cursor between quotes after expansion
+  (setq emmet-move-cursor-between-quotes t)
+  ;; Bind expansion to C-j (since TAB is used for completion)
+  (define-key emmet-mode-keymap (kbd "C-j") 'emmet-expand-line))
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (use-package dired
   :ensure nil
   :hook
@@ -189,6 +398,10 @@
 
 (transient-mark-mode 1)
 
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 (use-package org
   ;; :hook
   ;; ((org-mode . variable-pitch-mode))
@@ -203,23 +416,37 @@
   (setq org-hide-leading-stars t
 	org-hide-emphasis-markers t
 	org-ellipsis " ⇥ "
-        org-hide-block-startup t)
+        org-hide-block-startup t
+        org-startup-indented t)
 
   ;; Remove the initial two-spaces indentation inside code block
   (setq org-edit-src-content-indentation 0)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "SDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANC(c)")))
-)
+  )
 
 ;; Set Org-mode default folder
 (setq org-directory "~/Documents/org/"
-      org-agenda-file "~/Documents/org/")
+      org-agenda-files '("~/Documents/org/todo.org"))
 
-;; (use-package org-superstar
-;;   :ensure t
-;;   :hook (org-mode . org-superstar-mode)
-;;   :config
-;;   (setq org-superstar-special-todo-items t)
-;;   (setq org-superstar-headline-bullets-list
-;;         '("✿" "❀" "✺ " "✹ " "✸ " "✷ " "✶ " "✵")))
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autosubmarkers t
+        org-appear-autolinks t))
+
+(use-package org-modern
+  :ensure t
+  :hook
+  (org-mode . org-modern-mode)
+  (org-agenda-finalize . org-modern-agenda)
+  :config
+  (setq ; I am trying to stick with the default fold stars
+					; org-modern-star 'replace
+					; org-modern-replace-stars "✿❀✺✹✸✷✶✵"
+   org-modern-table-vertical 1
+   org-modern-table-horizontal 0.2))
 
 (global-set-key (kbd "C-c r") 'remember)
+(put 'upcase-region 'disabled nil)
