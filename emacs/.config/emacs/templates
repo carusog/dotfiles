@@ -1,0 +1,156 @@
+;; -*- mode: lisp-data -*-
+;; Tempel snippet templates for TypeScript, JavaScript, React, Go, and Clojure
+
+;; Shared JS/TS templates
+:js-base
+(imp "import " (s module) " from '" (s path) "';" n)
+(impd "import { " (s names) " } from '" (s path) "';" n)
+(impt "import type { " (s types) " } from '" (s path) "';" n)
+(impa "import * as " (s name) " from '" (s path) "';" n)
+(exp "export " (s what) n)
+(expd "export default " (s what) n)
+(expf "export function " (s name) "(" (s args) ") {" n> r> n "}" n)
+(expc "export const " (s name) " = " (s value) ";" n)
+(fn "function " (s name) "(" (s args) ") {" n> r> n "}" n)
+(fnr "function " (s name) "(" (s args) "): " (s returnType) " {" n> r> n "}" n)
+(af "(" (s args) ") => {" n> r> n "}" n)
+(afr "(" (s args) "): " (s returnType) " => {" n> r> n "}" n)
+(afi "(" (s args) ") => " (s expression) n)
+(cl "class " (s name) " {" n> r> n "}" n)
+(clx "class " (s name) " extends " (s parent) " {" n> r> n "}" n)
+(ctor "constructor(" (s args) ") {" n> r> n "}" n)
+(met (s name) "(" (s args) ") {" n> r> n "}" n)
+(metr (s name) "(" (s args) "): " (s returnType) " {" n> r> n "}" n)
+(get "get " (s name) "() {" n> r> n "}" n)
+(set "set " (s name) "(" (s arg) ") {" n> r> n "}" n)
+(log "console.log(" (s what) ");" n)
+(logl "console.log('" (s label) ":', " (s what) ");" n)
+(warn "console.warn(" (s what) ");" n)
+(err "console.error(" (s what) ");" n)
+(if "if (" (s condition) ") {" n> r> n "}" n)
+(ife "if (" (s condition) ") {" n> (s then) n "} else {" n> (s else) n "}" n)
+(for "for (let " (s i) " = 0; " (s i) " < " (s limit) "; " (s i) "++) {" n> r> n "}" n)
+(forof "for (const " (s item) " of " (s iterable) ") {" n> r> n "}" n)
+(forin "for (const " (s key) " in " (s object) ") {" n> r> n "}" n)
+(while "while (" (s condition) ") {" n> r> n "}" n)
+(try "try {" n> r> n "} catch (" (s error) ") {" n> (s handler) n "}" n)
+(tryf "try {" n> r> n "} catch (" (s error) ") {" n> (s handler) n "} finally {" n> (s finally) n "}" n)
+(switch "switch (" (s expression) ") {" n> "case " (s value) ":" n> r> n> "break;" n> "default:" n> (s default) n "}" n)
+(case "case " (s value) ":" n> r> n> "break;" n)
+(ter (s condition) " ? " (s then) " : " (s else) n)
+(timeout "setTimeout(() => {" n> r> n "}, " (s ms) ");" n)
+(interval "setInterval(() => {" n> r> n "}, " (s ms) ");" n)
+(promise "new Promise((resolve, reject) => {" n> r> n "});" n)
+(async "async " (s name) "(" (s args) ") {" n> r> n "}" n)
+(await "await " (s expression) n)
+(thenc (s promise) ".then((" (s result) ") => {" n> r> n "});" n)
+(catchc (s promise) ".catch((" (s error) ") => {" n> r> n "});" n)
+(desc "/**" n " * " (s description) n " */" n)
+
+js-mode
+(include :js-base)
+
+js-ts-mode
+(include :js-base)
+
+;; TypeScript specific
+:ts-base
+(include :js-base)
+(int "interface " (s name) " {" n> r> n "}" n)
+(intx "interface " (s name) " extends " (s parent) " {" n> r> n "}" n)
+(type "type " (s name) " = " (s definition) ";" n)
+(enum "enum " (s name) " {" n> r> n "}" n)
+(as (s expression) " as " (s type) n)
+
+typescript-mode
+(include :ts-base)
+
+typescript-ts-mode
+(include :ts-base)
+
+;; React and JSX
+:react-base
+(rfc "function " (p (file-name-base) name) "() {" n> "return (" n> r> n> ");" n "}" n> n "export default " name ";" n)
+(rfce "export default function " (p (file-name-base) name) "() {" n> "return (" n> r> n> ");" n "}" n)
+(rafc "const " (p (file-name-base) name) " = () => {" n> "return (" n> r> n> ");" n "};" n> n "export default " name ";" n)
+(rafce "export const " (p (file-name-base) name) " = () => {" n> "return (" n> r> n> ");" n "};" n)
+(rfcp "function " (p (file-name-base) name) "({ " (s props) " }: " (s propsType) ") {" n> "return (" n> r> n> ");" n "}" n> n "export default " name ";" n)
+(ust "const [" (s state) ", set" (p (capitalize state) State) "] = useState(" (s initial) ");" n)
+(usth "const [" (s state) ", set" (p (capitalize state) State) "] = useState<" (s type) ">(" (s initial) ");" n)
+(uef "useEffect(() => {" n> r> n "}, [" (s deps) "]);" n)
+(uefr "useEffect(() => {" n> r> n> "return () => {" n> (s cleanup) n "};" n "}, [" (s deps) "]);" n)
+(uctx "const " (s context) " = useContext(" (s Context) ");" n)
+(uref "const " (s ref) " = useRef(" (s initial) ");" n)
+(ureft "const " (s ref) " = useRef<" (s type) ">(" (s initial) ");" n)
+(umem "const " (s memoized) " = useMemo(() => " (s expression) ", [" (s deps) "]);" n)
+(ucb "const " (s callback) " = useCallback((" (s args) ") => {" n> r> n "}, [" (s deps) "]);" n)
+(ured "const [" (s state) ", " (s dispatch) "] = useReducer(" (s reducer) ", " (s initialState) ");" n)
+(tsx "<" (s element) ">" r "</" (s element) ">" n)
+(tsxp "<" (s element) " " (s props) ">" r "</" (s element) ">" n)
+(tsxs "<" (s element) " />" n)
+(frag "<" r "</>" n)
+(hone "const handleClick = () => {" n> r> n "};" n)
+(honc "const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {" n> r> n "};" n)
+(hons "const handleSubmit = (e: React.FormEvent) => {" n> "e.preventDefault();" n> r> n "};" n)
+
+tsx-ts-mode
+(include :ts-base)
+(include :react-base)
+
+jsx-mode
+(include :js-base)
+(include :react-base)
+
+web-mode
+(include :js-base)
+(include :react-base)
+
+;; CSS
+:css-base
+(flex "display: flex;" n "justify-content: " (s justify) ";" n "align-items: " (s align) ";" n)
+(grid "display: grid;" n "grid-template-columns: " (s columns) ";" n "gap: " (s gap) ";" n)
+
+css-mode
+(include :css-base)
+
+css-ts-mode
+(include :css-base)
+
+;; Go
+:go-base
+(pkg "package " (s name) n> n)
+(imp "import \"" (s package) "\"" n)
+(impm "import (" n> r> n ")" n)
+(fn "func " (s name) "(" (s args) ") " (s returnType) " {" n> r> n "}" n)
+(fnr "func " (s name) "(" (s args) ") (" (s returns) ") {" n> r> n "}" n)
+(meth "func (" (s receiver) " " (s type) ") " (s name) "(" (s args) ") " (s returnType) " {" n> r> n "}" n)
+(st "type " (s name) " struct {" n> r> n "}" n)
+(int "type " (s name) " interface {" n> r> n "}" n)
+(iferr "if err != nil {" n> r> n "}" n)
+(fori "for i := 0; i < " (s limit) "; i++ {" n> r> n "}" n)
+(forr "for " (s key) ", " (s value) " := range " (s collection) " {" n> r> n "}" n)
+
+go-mode
+(include :go-base)
+
+go-ts-mode
+(include :go-base)
+
+;; Clojure
+:clojure-base
+(defn "(defn " (s name) n> \"" (s docstring) \"" n> "[" (s args) "]" n> r> ")" n)
+(defm "(defmethod " (s name) " " (s dispatch) n> "[" (s args) "]" n> r> ")" n)
+(defmulti "(defmulti " (s name) " " (s dispatch-fn) ")" n)
+(let "(let [" (s bindings) "]" n> r> ")" n)
+(if "(if " (s condition) n> (s then) n> (s else) ")" n)
+(when "(when " (s condition) n> r> ")" n)
+(fn "(fn [" (s args) "]" n> r> ")" n)
+(map "(map " (s fn) " " (s coll) ")" n)
+(filter "(filter " (s pred) " " (s coll) ")" n)
+(reduce "(reduce " (s fn) " " (s coll) ")" n)
+
+clojure-mode
+(include :clojure-base)
+
+clojurescript-mode
+(include :clojure-base)
