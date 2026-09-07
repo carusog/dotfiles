@@ -37,6 +37,9 @@
 (column-number-mode t)
 (size-indication-mode t)
 
+;; Use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;; (use-package modus-themes
 ;;   :ensure t)
 
@@ -187,13 +190,13 @@
          ("M-g M-g" . consult-goto-line)
          ("M-g i" . consult-imenu)        ; Jump to function/class
          ("M-s r" . consult-ripgrep))     ; Project-wide search
-  :config
-  ;; Enable preview for most commands
-  (setq consult-preview-key 'any)
-  ;; Add debounce to ripgrep/grep/buffer for better performance
-  (consult-customize
-   consult-ripgrep consult-grep consult-buffer
-   :preview-key '(:debounce 0.4 any)))
+    :config
+    ;; Enable preview for most commands
+    (setq consult-preview-key 'any)
+    ;; Add debounce to ripgrep/grep/buffer for better performance
+    (consult-customize
+     consult-ripgrep consult-grep consult-buffer
+     :preview-key '(:debounce 0.4 any)))
 
 (use-package treesit-auto
   :ensure t
@@ -236,26 +239,14 @@
   (add-to-list 'eglot-server-programs
                '(web-mode . ("vue-language-server" "--stdio")))
 
-  ;; Add which-key integration for LSP commands
-  (with-eval-after-load 'which-key
-    (which-key-add-key-based-replacements "C-c l" "LSP"))
-
-  ;; Format buffer on save (Prettier via LSP)
-  (defun eglot-format-buffer-on-save ()
-    "Format buffer with eglot before saving."
-    (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-
-  ;; Enable format-on-save for web languages
-  (add-hook 'typescript-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'tsx-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'js-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'css-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'web-mode-hook #'eglot-format-buffer-on-save))
-
-(use-package apheleia
-  :ensure t
-  :config
-  (apheleia-global-mode +1))
+      ;; Add which-key integration for LSP commands
+      (with-eval-after-load 'which-key
+        (which-key-add-key-based-replacements "C-c l" "LSP")))
+  
+    (use-package apheleia
+      :ensure t
+      :config
+      (apheleia-global-mode +1))
 
 ;; TypeScript/JavaScript with tree-sitter (built-in Emacs 29+)
 (use-package typescript-ts-mode
@@ -422,7 +413,7 @@
   ;; Remove the initial two-spaces indentation inside code block
   (setq org-edit-src-content-indentation 0)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "SDAY(s)" "PROJ(p)" "|" "DONE(d!)" "CANC(c)")))
-  )
+)
 
 ;; Set Org-mode default folder
 (setq org-directory "~/Documents/org/"
@@ -443,10 +434,9 @@
   (org-agenda-finalize . org-modern-agenda)
   :config
   (setq ; I am trying to stick with the default fold stars
-					; org-modern-star 'replace
-					; org-modern-replace-stars "✿❀✺✹✸✷✶✵"
-   org-modern-table-vertical 1
-   org-modern-table-horizontal 0.2))
+        ; org-modern-star 'replace
+	; org-modern-replace-stars "✿❀✺✹✸✷✶✵"
+	org-modern-table-vertical 1
+	org-modern-table-horizontal 0.2))
 
 (global-set-key (kbd "C-c r") 'remember)
-(put 'upcase-region 'disabled nil)

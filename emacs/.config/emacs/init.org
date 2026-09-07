@@ -154,6 +154,9 @@ Enable a modern mode line and basic information displays.
   (column-number-mode t)
   (size-indication-mode t)
 
+  ;; Use spaces instead of tabs
+  (setq-default indent-tabs-mode nil)
+
 #+end_src
 
 * Theme
@@ -478,29 +481,16 @@ Configure eglot for IDE features like intelligent completion, navigation, and re
   (add-to-list 'eglot-server-programs
                '(web-mode . ("vue-language-server" "--stdio")))
 
-  ;; Add which-key integration for LSP commands
-  (with-eval-after-load 'which-key
-    (which-key-add-key-based-replacements "C-c l" "LSP"))
-
-  ;; Format buffer on save (Prettier via LSP)
-  (defun eglot-format-buffer-on-save ()
-    "Format buffer with eglot before saving."
-    (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-
-  ;; Enable format-on-save for web languages
-  (add-hook 'typescript-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'tsx-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'js-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'css-ts-mode-hook #'eglot-format-buffer-on-save)
-  (add-hook 'web-mode-hook #'eglot-format-buffer-on-save))
-
-(use-package apheleia
-  :ensure t
-  :config
-  (apheleia-global-mode +1))
-
-#+end_src
-
+      ;; Add which-key integration for LSP commands
+      (with-eval-after-load 'which-key
+        (which-key-add-key-based-replacements "C-c l" "LSP")))
+  
+    (use-package apheleia
+      :ensure t
+      :config
+      (apheleia-global-mode +1))
+  
+  #+end_src
 * Programming Language Modes
 
 Language-specific modes for polyglot development. Tree-sitter modes provide fast, accurate syntax highlighting and parsing.
