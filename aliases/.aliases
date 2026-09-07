@@ -7,8 +7,12 @@ alias sz="source ~/.zshrc"
 alias lg='lazygit'
 
 # better path printing
-alias ppp="tr ':' '\n' <<< "$PATH""
+alias ppp="tr ':' '\n' <<< ${PATH}"
 
 # Unaliasing g cause g-ls conflicts with it,
-# and typing `git` is not a big issue, isn't it? 
-unalias g
+# and typing `git` is not a big issue, isn't it?
+# Update: I've just removed it
+# unalias g
+
+# makes pnpm command shorter
+alias pm="pnpm"
