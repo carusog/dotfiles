@@ -84,12 +84,13 @@ ZSH_CUSTOM="$HOME/Development/github.com/carusog/dotfiles/oh-my-zsh/.oh-my-zsh/c
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
+  aliases
+  asdf
   git
+  poetry
   z 
   zsh-autosuggestions
   zsh-syntax-highlighting
-  poetry
-  asdf
 )
 
 # }}}
@@ -291,5 +292,21 @@ PATH="$HOME/.config/emacs-doom/bin:$PATH"
 
 # }}}
 # 🏄‍♂️ Windsurf -------------------------------------------------------------- {{{
+
 export PATH="/Users/giuseppe/.codeium/windsurf/bin:$PATH"
+
 # }}}
+# 🍇 Vite ------------------------------------------------------------------ {{{
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
+# }}}
+eval "$(mise activate zsh)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/giuseppe/.local/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/giuseppe/.antigravity-ide/antigravity-ide/bin:$PATH"
