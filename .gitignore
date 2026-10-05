@@ -1,6 +1,6 @@
 *.swp
 *.swo
-vim/plugged/
+vim/.vim/plugged/
 .netrwhist
 coc-settings.json
 nodepath.vim
@@ -50,4 +50,6 @@ transient/
 tree-sitter/
 url/
 
+# Karabiner
+karabiner/.config/karabiner/automatic_backups/
 

@@ -1,0 +1,1192 @@
+{
+    "machine_specific": {
+        "krbn-c6cdb4ec-e876-4f76-aac1-b85679478722": {
+            "external_editor_path": "/Applications/Emacs.app"
+        }
+    },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_delayed_action_delay_milliseconds": 200,
+                    "basic.to_if_alone_timeout_milliseconds": 400,
+                    "basic.to_if_held_down_threshold_milliseconds": 100
+                },
+                "rules": [
+                    {
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "description": "Change caps_lock to command+control+option+shift.",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Home-row modifiers: left F/D/S/A, right J/K/L/semicolon; G/H left/right Hyper; tap-then-hold to repeat (built-in keyboard only)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 1 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold j to repeat",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "j",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap j; hold for right_command",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "j"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "j"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "right_command"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 2 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold k to repeat",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "k",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap k; hold for right_option",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "k"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 2
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "k"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "right_option"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 3 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold l to repeat",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "l",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap l; hold for right_control",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "l"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 3
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "l"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "right_control"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 4 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold semicolon to repeat",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "semicolon",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap semicolon; hold for right_shift",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "semicolon"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 4
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "semicolon"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "right_shift"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 5 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold f to repeat",
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "f",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap f; hold for left_command",
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "f"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 5
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "f"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "left_command"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 6 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold d to repeat",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "d",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap d; hold for left_option",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "d"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 6
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "d"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "left_option"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 7 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold s to repeat",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "s",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap s; hold for left_control",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "s"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 7
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "s"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 8 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold a to repeat",
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap a; hold for left_shift",
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "a"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 8
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "a"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "halt": true,
+                                        "key_code": "left_shift"
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 9 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold g to repeat",
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "g",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap g; hold for left Hyper (Command+Option+Control+Shift)",
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "g"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 9
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "g"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option",
+                                            "left_control"
+                                        ],
+                                        "halt": true
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "expression": "hrm_last_tap == 10 and system.now.milliseconds < hrm_repeat_until",
+                                        "type": "expression_if"
+                                    },
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "description": "Tap then hold h to repeat",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "h",
+                                        "repeat": true
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Tap h; hold for right Hyper (Command+Option+Control+Shift)",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.to_delayed_action_delay_milliseconds": 200,
+                                    "basic.to_if_alone_timeout_milliseconds": 200,
+                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "key_code": "h"
+                                        }
+                                    ]
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hrm_last_tap",
+                                            "value": 10
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "expression": "system.now.milliseconds + 250",
+                                            "name": "hrm_repeat_until"
+                                        }
+                                    },
+                                    {
+                                        "halt": true,
+                                        "key_code": "h"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "right_shift",
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_option",
+                                            "right_control"
+                                        ],
+                                        "halt": true
+                                    }
+                                ],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change caps_lock to left_control if pressed with other keys, change caps_lock to escape if pressed alone.",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps Lock to Escape (built-in keyboard only)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            {
+                                                "is_built_in_keyboard": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "keyboard_type_v2": "ansi"
+            }
+        }
+    ]
+}
