@@ -159,7 +159,7 @@ export PATH="$HOME/doom-emacs/bin:$PATH"
 # Bun ---------------------------------------------------------------------- {{{
 
 # add completions
-[ -s "/Users/giuseppe/.bun/_bun" ] && source "/Users/giuseppe/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # }}}
 # Starshipt init ----------------------------------------------------------- {{{
@@ -224,19 +224,23 @@ chruby ruby-3.3.0
 # Herd --------------------------------------------------------------------- {{{
 
 # Herd injected NVM configuration
-# export NVM_DIR="/Users/giuseppe/Library/Application Support/Herd/config/nvm"
+# export NVM_DIR="$HOME/Library/Application Support/Herd/config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
-# Herd injected PHP binary.
-export PATH="/Users/giuseppe/Library/Application Support/Herd/bin/":$PATH
+herd_dir="$HOME/Library/Application Support/Herd"
+if [[ -d "$herd_dir" ]]; then
+  # Herd injected PHP binary.
+  export PATH="$herd_dir/bin/":$PATH
 
-# Herd injected PHP 8.2 configuration.
-export HERD_PHP_82_INI_SCAN_DIR="/Users/giuseppe/Library/Application Support/Herd/config/php/82/"
+  # Herd injected PHP 8.2 configuration.
+  export HERD_PHP_82_INI_SCAN_DIR="$herd_dir/config/php/82/"
 
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/giuseppe/Library/Application Support/Herd/config/php/83/"
+  # Herd injected PHP 8.3 configuration.
+  export HERD_PHP_83_INI_SCAN_DIR="$herd_dir/config/php/83/"
+fi
+unset herd_dir
 
 # }}}
 # Taskwarrior -------------------------------------------------------------- {{{
@@ -283,7 +287,7 @@ eval "$(uvx --generate-shell-completion zsh)"
 
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
-. "/Users/giuseppe/.deno/env"
+[ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"
 
 # }}}
 # 🐃 Doom Emacs ------------------------------------------------------------ {{{
@@ -293,20 +297,20 @@ PATH="$HOME/.config/emacs-doom/bin:$PATH"
 # }}}
 # 🏄‍♂️ Windsurf -------------------------------------------------------------- {{{
 
-export PATH="/Users/giuseppe/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 
 # }}}
 # 🍇 Vite ------------------------------------------------------------------ {{{
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"
 
 # }}}
 eval "$(mise activate zsh)"
 
 
 # Added by Antigravity CLI installer
-export PATH="/Users/giuseppe/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Added by Antigravity IDE
-export PATH="/Users/giuseppe/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
