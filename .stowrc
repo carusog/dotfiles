@@ -1,0 +1,19 @@
+# GNU Stow options for this repository.
+#
+# Stow reads ./.stowrc automatically when run from this directory, so the
+# options below apply to `make` as well as to manual commands such as
+# `stow --restow kitty`.
+#
+# --ignore patterns are Perl regexes matched against the end of each path.
+# They are added on top of Stow's built-in default ignore list (which already
+# skips .git, .gitignore, README*, LICENSE*, editor backups, ...).
+# Avoid per-package .stow-local-ignore files: one of those replaces the
+# built-in defaults for its package instead of extending them.
+
+--target=~
+
+# macOS Finder metadata
+--ignore=\.DS_Store
+
+# Karabiner-Elements automatic backups (machine-local, not versioned)
+--ignore=automatic_backups
