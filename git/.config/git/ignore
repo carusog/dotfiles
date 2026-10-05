@@ -1,6 +1,6 @@
-# Global .gitignore
-# copy it into your home folder (~) and execute the following command:
-# git config --global core.excludesfile ~/.gitignore
+# Global gitignore
+# Stowed to ~/.config/git/ignore, which git uses by default as the global
+# excludes file (no core.excludesfile setting required).
 
 # Folder view configuration files
 .DS_Store

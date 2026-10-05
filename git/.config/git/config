@@ -1,0 +1,27 @@
+[user]
+	name = Giuseppe Caruso
+
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = main
+
+[includeIf "gitdir:~/Development/local/"]
+	path = ~/Development/github.com/carusog/.gitconfig
+
+[includeIf "gitdir:~/Development/github.com/carusog/"]
+	path = ~/Development/github.com/carusog/.gitconfig
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[color]
+	ui = auto
+
+# Machine-specific settings (email, credentials, maintenance) live in an
+# untracked file next to this one. Missing includes are silently ignored.
+[include]
+	path = ~/.config/git/config.local
