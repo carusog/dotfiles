@@ -1,0 +1,5 @@
+font-size = 16
+theme = dark:TokyoNight Moon,light:TokyoNight Day
+# Alternatives:
+# theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+# theme = dark:Rose Pine Moon,light:Rose Pine Dawn
